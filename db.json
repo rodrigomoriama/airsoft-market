@@ -1,0 +1,120 @@
+{
+    "mosaic": [
+        { "id": 1, "operationType": "Venda", "title": "", "model": "M4A1", "manufacturer": "CYMA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
+        { "id": 2, "operationType": "Venda", "title": "", "model": "AK 47", "manufacturer": "CYMA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
+        { "id": 3, "operationType": "Venda", "title": "", "model": "UMP 45", "manufacturer": "Umarex", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
+        { "id": 4, "operationType": "Compra", "title": "", "model": "Glock 18", "manufacturer": "KWA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
+        { "id": 5, "operationType": "Venda", "title": "", "model": "USP", "manufacturer": "KJW", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
+        { "id": 6, "operationType": "Venda", "title": "", "model": "1911", "manufacturer": "SRC", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
+        { "id": 7, "operationType": "Troca", "title": "", "model": "M9", "manufacturer": "WE", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" }
+    ],
+
+    "productDetail": [{
+        "id": 1,
+        "operationType": "Venda",
+        "title": "M4A1 full metal",
+        "productType": "Airsoft",
+        "model": "M4A1",
+        "manufacturer": "CYMA",
+        "materialType": "Full Metal",
+        "price": 1000.00,
+        "amount": 1,
+        "conditionType": "Novo",
+        "hasUpgrade": false,
+        "location": "São Paulo/SP",
+        "itemsIncluded": "",
+        "acceptExchange": true,
+        "caliberType": "6mm",
+        "magazineAmount": 1,
+        "magazineType": "Mid-Cap",
+        "magazineRounds": "120",
+        "systemType": "GBB (Gás Blowback)",
+        "activationType": "Green Gás",
+        "weight": "NA",
+        "range": "35 metros",
+        "fps": "NA",
+        "phone": "(11) 9999-9999",
+        "celphone": "(11) 99999-9999",
+        "email": "teste@teste.com.br",
+        "ownerName": "Name Test",
+        "meetingPoint": ""
+    }],
+    "productType": [
+        { "id": "1", "name": "Airsoft" },
+        { "id": "2", "name": "Peças para Airsoft" },
+        { "id": "3", "name": "Carabina de Preção" },
+        { "id": "4", "name": "Peças para Carabina" },
+        { "id": "5", "name": "Vestuário" },
+        { "id": "6", "name": "Acessório" },
+        { "id": "7", "name": "Outros" }
+    ],
+    "operationType": [
+        { "id": "1", "name": "Compra" },
+        { "id": "2", "name": "Venda" },
+        { "id": "3", "name": "Troca" }
+    ],
+    "model": [
+        { "id": 1, "name": "M4A1" },
+        { "id": 2, "name": "AK 47" },
+        { "id": 3, "name": "UMP 45" },
+        { "id": 4, "name": "Glock 17" },
+        { "id": 5, "name": "Glock 18" },
+        { "id": 6, "name": "Glock 18c" },
+        { "id": 7, "name": "Glock 19" },
+        { "id": 8, "name": "Glock 21" },
+        { "id": 9, "name": "Glock 23" },
+        { "id": 10, "name": "USP" },
+        { "id": 11, "name": "1911" },
+        { "id": 12, "name": "M9" }
+    ],
+    "manufacturer": [
+        { "id": 1, "name": "CYMA" },
+        { "id": 2, "name": "WE" },
+        { "id": 3, "name": "APS" },
+        { "id": 4, "name": "KWA" },
+        { "id": 5, "name": "KJW" },
+        { "id": 6, "name": "Classic Army" },
+        { "id": 7, "name": "King Arms" },
+        { "id": 8, "name": "Tokyo Marui" },
+        { "id": 9, "name": "Krytac" },
+        { "id": 10, "name": "Umarex" },
+        { "id": 11, "name": "G&G" },
+        { "id": 12, "name": "A&K" },
+        { "id": 13, "name": "Echo 1" },
+        { "id": 14, "name": "Madbull" },
+        { "id": 15, "name": "Ares" },
+        { "id": 16, "name": "Jing Gong" },
+        { "id": 17, "name": "Cybergun" },
+        { "id": 18, "name": "ICS" }
+    ],
+    "conditionType": [
+        { "id": 1, "name": "Novo" },
+        { "id": 2, "name": "Semi novo" },
+        { "id": 3, "name": "Usado" }
+    ],
+    "materialType": [
+        { "id": 1, "name": "Full Metal" },
+        { "id": 2, "name": "Semi Metal" },
+        { "id": 3, "name": "Polímero" }
+    ],
+    "caliberType": [
+        { "id": 1, "name": "6mm" },
+        { "id": 2, "name": "5.5mm" },
+        { "id": 3, "name": "4.5mm" }
+    ],
+    "magazineType": [
+        { "id": 1, "name": "Low Cap" },
+        { "id": 2, "name": "Mid Cap" },
+        { "id": 3, "name": "High Cap" }
+    ],
+    "activationType": [
+        { "id": 1, "name": "Green Gás" },
+        { "id": 2, "name": "CO2" }
+    ],
+    "systemType": [
+        { "id": 1, "name": "Spring" },
+        { "id": 2, "name": "Elétrico" },
+        { "id": 3, "name": "GBB (Gás Blowback)" },
+        { "id": 4, "name": "GNBB (Gás Non Blowback)" }
+    ]
+}
