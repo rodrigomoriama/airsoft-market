@@ -1,3 +1,4 @@
+import { MosaicService } from './../../providers/mosaic.service';
 import { MosaicComponent } from './mosaic.component';
 import { NgModule, } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -13,7 +14,7 @@ import { MosaicFilterComponent } from './mosaic-filter/mosaic-filter.component';
     MosaicFilterComponent
   ],
   providers: [
-
+    MosaicService
   ],
   entryComponents: [
 

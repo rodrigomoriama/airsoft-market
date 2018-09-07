@@ -1,7 +1,8 @@
 import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response, ResponseContentType, URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 
 @Injectable()
@@ -11,9 +12,7 @@ export class ApiService {
     private sanitizer: DomSanitizer) {
   }
 
-
   private setHeaders(data?, image?, file?): Headers {
-
     const headersConfig = {
       'Content-Type': 'application/json',
       'Accept': 'application/json'
@@ -41,7 +40,7 @@ export class ApiService {
   }
 
   private formatErrors(error: any) {
-    return Observable.throw(error.json());
+    return throwError(error.json());
   }
 
   getImageData(path: string, params: URLSearchParams = new URLSearchParams()): Observable<any> {
@@ -51,27 +50,31 @@ export class ApiService {
 
   get(path: string, params?: URLSearchParams): Observable<any> {
     return this.http.get(`${environment.api_url}${path}`, { headers: this.setHeaders() })
-      .catch(this.formatErrors)
-      .map((res: Response) => {
-        if (res['_body']) {
-          return res.json();
-        } else {
-          return res;
-        }
-      });
+      .pipe(
+        map((res: Response) => {
+          if (res['_body']) {
+            return res.json();
+          } else {
+            return res;
+          }
+        }),
+        catchError(this.formatErrors)
+      );
   }
 
   postData(path: string, body: Object = {}, params: URLSearchParams = new URLSearchParams()): Observable<any> {
     return this.http.post(`${environment.api_url}${path}`, body, { headers: this.setHeaders(true), search: params })
-      .catch(this.formatErrors)
-      .map((res: Response) => {
+    .pipe(
+      map((res: Response) => {
         if (res['_body']) {
           return res.json();
         } else {
           return res;
         }
 
-      }, this);
+      }, this),
+      catchError(this.formatErrors)
+    );
   }
 
   post(path: string, body: Object = {}, params: URLSearchParams = new URLSearchParams()): Observable<any> {
@@ -79,32 +82,38 @@ export class ApiService {
       headers: this.setHeaders(),
       search: params
     })
-      .catch(this.formatErrors)
-      .map((res: Response) => {
-        if (res['_body'] !== '') {
+    .pipe(
+      map((res: Response) => {
+        if (res['_body']) {
           return res.json();
         } else {
           return res;
         }
-      });
+      }),
+      catchError(this.formatErrors)
+    );
   }
 
   delete(path, params?: URLSearchParams): Observable<any> {
     return this.http.delete(`${environment.api_url}${path}`, { headers: this.setHeaders() })
-      .catch(this.formatErrors)
-      .map((res: Response) => {
-        if (res['_body'] !== '') {
+    .pipe(
+      map((res: Response) => {
+        if (res['_body']) {
           return res.json();
         } else {
           return res;
         }
-      });
+      }),
+      catchError(this.formatErrors)
+    );
   }
 
   putData(path: string, body: Object = {}, params: URLSearchParams = new URLSearchParams()): Observable<any> {
     return this.http.put(`${environment.api_url}${path}`, body, { headers: this.setHeaders(true), search: params })
-      .catch(this.formatErrors)
-      .map((res: Response) => res.json());
+    .pipe(
+      map((res: Response) => res.json()),
+      catchError(this.formatErrors)
+    );
   }
 
   put(path: string, body: Object = {}, params?: URLSearchParams): Observable<any> {
@@ -112,14 +121,16 @@ export class ApiService {
       headers: this.setHeaders(),
       search: params
     })
-      .catch(this.formatErrors)
-      .map((res: Response) => {
-        if (res['_body'] !== '') {
+    .pipe(
+      map((res: Response) => {
+        if (res['_body']) {
           return res.json();
         } else {
           return res;
         }
-      });
+      }),
+      catchError(this.formatErrors)
+    );
   }
 
   downloadFile(path: string, searchParams?: URLSearchParams): Observable<Blob> {
@@ -130,8 +141,10 @@ export class ApiService {
     });
 
     return this.http.get(`${environment.api_url}${path}`, options)
-      .catch(this.formatErrors)
-      .map((res: Response) => res.blob());
+    .pipe(
+      map((res: Response) => res.json()),
+      catchError(this.formatErrors)
+    );
   }
 
   downloadImage(path: string, searchParams?: URLSearchParams): Observable<Blob> {
@@ -142,8 +155,10 @@ export class ApiService {
     });
 
     return this.http.get(`${environment.api_url}${path}`, options)
-      .catch(this.formatErrors)
-      .map((res: Response) => res.blob());
+    .pipe(
+      map((res: Response) => res.json()),
+      catchError(this.formatErrors)
+    );
   }
 
   downloadFileWithResponse(path: string, searchParams?: URLSearchParams): Observable<Response> {
@@ -154,6 +169,8 @@ export class ApiService {
     });
 
     return this.http.get(`${environment.api_url}${path}`, options)
-      .catch(this.formatErrors);
+      .pipe(
+        catchError(this.formatErrors)
+      );
   }
 }

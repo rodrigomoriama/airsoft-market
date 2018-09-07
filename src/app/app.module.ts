@@ -1,3 +1,4 @@
+import { ApiService } from './../providers/api.service';
 import { MosaicModule } from './mosaic/mosaic.module';
 import { AppRoutingModule } from './app.routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -8,13 +9,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { ProductDetailComponent } from './product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,9 @@ import { FooterComponent } from './footer/footer.component';
     AppRoutingModule,
     MosaicModule
   ],
-  providers: [],
+  providers: [
+    ApiService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

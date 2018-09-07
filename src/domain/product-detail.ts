@@ -1,0 +1,30 @@
+export interface ProductDetail {
+  id: number;
+  operationType: string;
+  title: string;
+  productType: string;
+  model: string;
+  manufacturer: string;
+  materialType: string;
+  price: number;
+  amount: number;
+  conditionType: string;
+  hasUpgrade: boolean;
+  location: string;
+  itemsIncluded: string;
+  acceptExchange: boolean;
+  caliberType: string;
+  magazineAmount: number;
+  magazineType: string;
+  magazineRounds: number;
+  systemType: string;
+  activationType: string;
+  weight: string;
+  range: string;
+  fps: string;
+  phone: string;
+  celphone: string;
+  email: string;
+  ownerName: string;
+  meetingPoint: string;
+}
