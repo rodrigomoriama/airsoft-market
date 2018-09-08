@@ -1,12 +1,12 @@
 {
     "mosaic": [
-        { "id": 1, "operationType": "Venda", "title": "", "model": "M4A1", "manufacturer": "CYMA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
-        { "id": 2, "operationType": "Venda", "title": "", "model": "AK 47", "manufacturer": "CYMA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
-        { "id": 3, "operationType": "Venda", "title": "", "model": "UMP 45", "manufacturer": "Umarex", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
-        { "id": 4, "operationType": "Compra", "title": "", "model": "Glock 18", "manufacturer": "KWA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
-        { "id": 5, "operationType": "Venda", "title": "", "model": "USP", "manufacturer": "KJW", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
-        { "id": 6, "operationType": "Venda", "title": "", "model": "1911", "manufacturer": "SRC", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" },
-        { "id": 7, "operationType": "Troca", "title": "", "model": "M9", "manufacturer": "WE", "price": 1000.00, "amount": 1, "location": "São Paulo/SP" }
+        { "id": 1, "operationType": "Venda", "title": "", "model": "M4A1", "manufacturer": "CYMA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP", "thumb_path": "" },
+        { "id": 2, "operationType": "Venda", "title": "", "model": "AK 47", "manufacturer": "CYMA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP", "thumb_path": "" },
+        { "id": 3, "operationType": "Venda", "title": "", "model": "UMP 45", "manufacturer": "Umarex", "price": 1000.00, "amount": 1, "location": "São Paulo/SP", "thumb_path": "" },
+        { "id": 4, "operationType": "Compra", "title": "", "model": "Glock 18", "manufacturer": "KWA", "price": 1000.00, "amount": 1, "location": "São Paulo/SP", "thumb_path": "" },
+        { "id": 5, "operationType": "Venda", "title": "", "model": "USP", "manufacturer": "KJW", "price": 1000.00, "amount": 1, "location": "São Paulo/SP", "thumb_path": "" },
+        { "id": 6, "operationType": "Venda", "title": "", "model": "1911", "manufacturer": "SRC", "price": 1000.00, "amount": 1, "location": "São Paulo/SP", "thumb_path": "" },
+        { "id": 7, "operationType": "Troca", "title": "", "model": "M9", "manufacturer": "WE", "price": 1000.00, "amount": 1, "location": "São Paulo/SP", "thumb_path": "" }
     ],
 
     "productDetail": [{
@@ -37,7 +37,14 @@
         "celphone": "(11) 99999-9999",
         "email": "teste@teste.com.br",
         "ownerName": "Name Test",
-        "meetingPoint": ""
+        "meetingPoint": "",
+        "images_path": [
+            "",
+            "",
+            "",
+            "",
+            ""
+        ]
     }],
     "productType": [
         { "id": "1", "name": "Airsoft" },

@@ -1,1 +1,46 @@
-filter
+<form [formGroup]="filterForm" (keydown.enter)="$event.preventDefault()">
+    <mat-form-field>
+        <mat-select placeholder="Operação" formControlName="operationType">
+            <mat-option *ngFor="let item of operationType" [value]="item">
+                {{item.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Tipo de Produto" formControlName="productType">
+            <mat-option *ngFor="let item of productType" [value]="item">
+                {{item.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Condição" formControlName="conditionType">
+            <mat-option *ngFor="let item of conditionType" [value]="item">
+                {{item.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Tipo de Calibre" formControlName="caliberType">
+            <mat-option *ngFor="let item of caliberType" [value]="item">
+                {{item.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-select placeholder="Tipo de Sistema" formControlName="systemType">
+            <mat-option *ngFor="let item of systemType" [value]="item">
+                {{item.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button mat-button (click)="onSubmit()">Filtrar</button>
+    <button (click)="cleanForm()" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+</form>

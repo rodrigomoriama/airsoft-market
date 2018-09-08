@@ -7,4 +7,5 @@ export interface Mosaic {
    price: number;
    amount: number;
    location: string;
+   thumb_path: string;
 }

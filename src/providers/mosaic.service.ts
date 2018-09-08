@@ -15,7 +15,7 @@ export class MosaicService {
   }
 
   getAllProductsMosaic(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_MOSAIC_ALL).pipe(
+    return this.apiService.get(AppConstants.URL_MOSAIC_ALL, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );

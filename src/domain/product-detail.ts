@@ -27,4 +27,5 @@ export interface ProductDetail {
   email: string;
   ownerName: string;
   meetingPoint: string;
+  images_path: string[];
 }

@@ -22,6 +22,13 @@ export class ProductService {
     );
   }
 
+  getOperationType(params: URLSearchParams) {
+    return this.apiService.get(AppConstants.URL_PRODUCT_OPERATION_TYPE).pipe(
+      map(res => res),
+      catchError(this.handleError)
+    );
+  }
+
   getProductType(params: URLSearchParams) {
     return this.apiService.get(AppConstants.URL_PRODUCT_PRODUCT_TYPE).pipe(
       map(res => res),

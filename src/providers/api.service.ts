@@ -49,7 +49,7 @@ export class ApiService {
   }
 
   get(path: string, params?: URLSearchParams): Observable<any> {
-    return this.http.get(`${environment.api_url}${path}`, { headers: this.setHeaders() })
+    return this.http.get(`${environment.api_url}${path}`, { headers: this.setHeaders(), search: params })
       .pipe(
         map((res: Response) => {
           if (res['_body']) {
