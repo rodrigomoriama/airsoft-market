@@ -8,10 +8,10 @@ export interface MosaicFilter {
   systemType: Dropdown;
   model: Dropdown;
   manufacturer: Dropdown;
+  location: Dropdown;
 
   hasUpgrade: boolean;
   acceptExchange: boolean;
 
-  location: string;
   title: string;
 }

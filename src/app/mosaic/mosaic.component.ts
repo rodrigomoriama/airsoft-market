@@ -66,6 +66,10 @@ export class MosaicComponent implements OnInit, OnDestroy {
           this.selectedFilters.manufacturer = this.emptyItem;
         }
 
+        if (!this.selectedFilters.location) {
+          this.selectedFilters.location = this.emptyItem;
+        }
+
         this.loadData();
       }
     );
@@ -130,8 +134,8 @@ export class MosaicComponent implements OnInit, OnDestroy {
         params.set(AppConstants.PARAMS_MOSAIC_MANUFACTURER, this.selectedFilters.manufacturer.name);
       }
 
-      if (this.selectedFilters.location) {
-        params.set(AppConstants.PARAMS_MOSAIC_LOCATION, this.selectedFilters.location);
+      if (this.selectedFilters.location.id) {
+        params.set(AppConstants.PARAMS_MOSAIC_LOCATION, this.selectedFilters.location.name);
       }
 
       if (this.selectedFilters.title) {
@@ -177,4 +181,10 @@ export class MosaicComponent implements OnInit, OnDestroy {
     this.selectedFilters.manufacturer = this.emptyItem;
     this.loadData();
   }
+
+  removeLocationFilter() {
+    this.selectedFilters.location = this.emptyItem;
+    this.loadData();
+  }
+
 }

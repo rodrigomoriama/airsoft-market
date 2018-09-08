@@ -1,10 +1,14 @@
+import { Subscription } from 'rxjs/internal/Subscription';
+import { FormatFieldHelper } from './../../helpers/format-field-helper';
 import { MosaicFilter } from './../../../domain/mosaic-filter';
 import { URLSearchParams } from '@angular/http';
 import { forkJoin } from 'rxjs';
 import { Dropdown } from './../../../domain/dropdown';
 import { ProductService } from './../../../providers/product.service';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, AfterViewInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { debounceTime } from 'rxjs/internal/operators/debounceTime';
+import { subscribeOn } from 'rxjs/internal/operators/subscribeOn';
 
 
 @Component({
@@ -12,7 +16,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   templateUrl: './mosaic-filter.component.html',
   styleUrls: ['./mosaic-filter.component.css']
 })
-export class MosaicFilterComponent implements OnInit {
+export class MosaicFilterComponent implements OnInit, AfterViewInit {
 
   operationType: Dropdown[];
   productType: Dropdown[];
@@ -20,11 +24,14 @@ export class MosaicFilterComponent implements OnInit {
   caliberType: Dropdown[];
   systemType: Dropdown[];
 
+  location: Dropdown[];
+
   emptyItem: Dropdown;
 
   filterForm: FormGroup;
 
   filterEmitter = new EventEmitter<MosaicFilter>();
+  subscriptionLocation: Subscription;
 
   constructor(private productService: ProductService,
     private formBuilder: FormBuilder) {
@@ -43,8 +50,10 @@ export class MosaicFilterComponent implements OnInit {
       'hasUpgrade': [false],
       'acceptExchange': [false],
 
+      'title': [''],
+
       'location': [''],
-      'title': ['']
+      'locationName': ['']
     });
   }
 
@@ -74,6 +83,15 @@ export class MosaicFilterComponent implements OnInit {
       );
   }
 
+  ngAfterViewInit() {
+    this.subscriptionLocation = this.filterForm.get('locationName').valueChanges
+    .pipe(
+      debounceTime(400)
+    ).subscribe(value => {
+      this.onFilterLocation(value);
+    });
+  }
+
   onSubmit() {
     this.filterEmitter.emit(this.filterForm.value);
   }
@@ -86,13 +104,63 @@ export class MosaicFilterComponent implements OnInit {
     this.filterForm.get('systemType').setValue(null);
     this.filterForm.get('model').setValue(null);
     this.filterForm.get('manufacturer').setValue(null);
+    this.filterForm.get('location').setValue(null);
 
     this.filterForm.get('hasUpgrade').setValue(false);
     this.filterForm.get('acceptExchange').setValue(false);
 
-    this.filterForm.get('location').setValue('');
+    this.filterForm.get('locationName').setValue('');
     this.filterForm.get('title').setValue('');
 
     this.onSubmit();
+  }
+
+  // ===================================================
+  // LOCATION
+  // ===================================================
+  onSelectedItemLocation(event) {
+    if (event !== undefined || event !== null) {
+
+      if (event.id) {
+        this.selectLocation(event);
+      } else if (event !== '') {
+        const findItem = this.location.find(
+          l => FormatFieldHelper.removeAccents(l.name).toLowerCase() === FormatFieldHelper.removeAccents(event).toLowerCase());
+
+        if (findItem) {
+          this.selectLocation(findItem);
+          return;
+        }
+      } else {
+        this.onClearLocationDropdown();
+      }
+    }
+  }
+
+  selectLocation(event: Dropdown) {
+    console.log(event);
+    this.filterForm.get('location').setValue(event);
+    this.filterForm.get('locationName').setValue(event.name);
+  }
+
+  onClearLocationDropdown() {
+    this.filterForm.get('location').setValue(this.emptyItem);
+    this.filterForm.get('locationName').setValue('');
+  }
+
+  onFilterLocation(event: string) {
+    const params = new URLSearchParams();
+    params.set('name_like', event);
+
+    this.productService.getLocationCity(params).subscribe(
+      (location: Dropdown[]) => {
+        this.location = location;
+      },
+      error => console.log(error)
+    );
+  }
+
+  canClearField(fieldName: string): boolean {
+    return this.filterForm.get(fieldName).value && this.filterForm.get(fieldName).enabled;
   }
 }

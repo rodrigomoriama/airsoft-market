@@ -7,7 +7,8 @@ import {
   MatInputModule,
   MatSelectModule,
   MatSlideToggleModule,
-  MatButtonModule
+  MatButtonModule,
+  MatCardModule
 } from '@angular/material';
 import { MosaicService } from './../../providers/mosaic.service';
 import { MosaicComponent } from './mosaic.component';
@@ -31,6 +32,7 @@ import { MosaicFilterComponent } from './mosaic-filter/mosaic-filter.component';
     MatSelectModule,
     MatSlideToggleModule,
     MatButtonModule,
+    MatCardModule,
 
     ReactiveFormsModule,
     FormsModule,

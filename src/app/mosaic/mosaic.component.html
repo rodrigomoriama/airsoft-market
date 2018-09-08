@@ -12,10 +12,32 @@
             <mat-chip *ngIf="selectedFilters.systemType.id" (click)="removeSystemTypeFilter()">{{ selectedFilters.systemType.name }}</mat-chip>
             <mat-chip *ngIf="selectedFilters.model.id" (click)="removeModelFilter()">{{ selectedFilters.model.name }}</mat-chip>
             <mat-chip *ngIf="selectedFilters.manufacturer.id" (click)="removeManufacturerFilter()">{{ selectedFilters.manufacturer.name }}</mat-chip>
+            <mat-chip *ngIf="selectedFilters.location.id" (click)="removeLocationFilter()">{{ selectedFilters.location.name }}/{{ selectedFilters.location.uf }}</mat-chip>
         </mat-chip-list>
     </div>
 </div>
 
 <div class="mosaic-content">
+
+    <div class="row">
+        <div class="col-md-3 mosaic-card" *ngFor="let item of mosaicData">
+            <mat-card class="">
+                <mat-card-header>
+                    <mat-card-title>{{ item.title }}</mat-card-title>
+                </mat-card-header>
+                <img mat-card-image class="mosaic-card-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png" alt="">
+                <mat-card-content>
+                    <div class="mosaic-card-item-operation-type">{{ item.operationType }}</div>
+                    <div class="card-itens">
+                        <div><b>Modelo: </b>{{ item.model }}</div>
+                        <div><b>Marca: </b>{{ item.manufacturer }}</div>
+                        <div><b>Preço: </b>{{ item.price }}</div>
+                        <div><b>Quantidade: </b>{{ item.amount }}</div>
+                        <div><b>Cidade: </b>{{ item.location }}</div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
 
 </div>

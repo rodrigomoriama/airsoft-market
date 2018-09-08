@@ -16,17 +16,18 @@ export class AppConstants {
   public static URL_PRODUCT_MAGAZINE_TYPE = 'magazineType';
   public static URL_PRODUCT_ACTIVATION_TYPE = 'activationType';
   public static URL_PRODUCT_SYSTEM_TYPE = 'systemType';
+  public static URL_PRODUCT_LOCATION_CITY = 'locationCity';
 
   // ********* PARAMS *******************
-  public static PARAMS_MOSAIC_OPERATION_TYPE = 'operationType';
+  public static PARAMS_MOSAIC_OPERATION_TYPE = 'operationType_like';
   public static PARAMS_MOSAIC_PRODUCT_TYPE = 'productType';
   public static PARAMS_MOSAIC_CONDITION_TYPE = 'conditionType';
   public static PARAMS_MOSAIC_CALIBER_TYPE = 'caliberType';
   public static PARAMS_MOSAIC_SYSTEM_TYPE = 'systemType';
   public static PARAMS_MOSAIC_MODEL = 'model';
   public static PARAMS_MOSAIC_MANUFACTURER = 'manufacturer';
-  public static PARAMS_MOSAIC_LOCATION = 'location';
-  public static PARAMS_MOSAIC_TITLE = 'title';
+  public static PARAMS_MOSAIC_LOCATION = 'location_like';
+  public static PARAMS_MOSAIC_TITLE = 'title_like';
   public static PARAMS_MOSAIC_HAS_UPGRADE = 'hasUpgrade';
   public static PARAMS_MOSAIC_ACCEPT_EXCHANGE = 'acceptExchange';
 

@@ -16,21 +16,21 @@ export class ProductService {
   }
 
   getProductById(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_BY_ID).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_BY_ID, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getOperationType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_OPERATION_TYPE).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_OPERATION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getProductType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_PRODUCT_TYPE).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_PRODUCT_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -38,7 +38,7 @@ export class ProductService {
 
 
   getProductModel(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_PRODUCT_MODEL).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_PRODUCT_MODEL, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -46,7 +46,7 @@ export class ProductService {
 
 
   getManufacturer(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_MANUFACTURER).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_MANUFACTURER, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -54,42 +54,49 @@ export class ProductService {
 
 
   getConditionType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_CONDITION_TYPE).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_CONDITION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getMaterialType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_MATERIAL_TYPE).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_MATERIAL_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getCaliberType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_CALIBER_TYPE).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_CALIBER_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getMagazineType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_MAGAZINE_TYPE).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_MAGAZINE_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getActivationType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_ACTIVATION_TYPE).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_ACTIVATION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getSystemType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_SYSTEM_TYPE).pipe(
+    return this.apiService.get(AppConstants.URL_PRODUCT_SYSTEM_TYPE, params).pipe(
+      map(res => res),
+      catchError(this.handleError)
+    );
+  }
+
+  getLocationCity(params: URLSearchParams) {
+    return this.apiService.get(AppConstants.URL_PRODUCT_LOCATION_CITY, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
