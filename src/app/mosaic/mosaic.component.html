@@ -5,6 +5,7 @@
 
     <div class="filter-activated" *ngIf="selectedFilters">
         <mat-chip-list>
+            <mat-chip *ngIf="selectedFilters.title" (click)="removeTitleFilter()">{{ selectedFilters.title }}</mat-chip>
             <mat-chip *ngIf="selectedFilters.operationType.id" (click)="removeOperationTypeFilter()">{{ selectedFilters.operationType.name }}</mat-chip>
             <mat-chip *ngIf="selectedFilters.productType.id" (click)="removeProductTypeFilter()">{{ selectedFilters.productType.name }}</mat-chip>
             <mat-chip *ngIf="selectedFilters.conditionType.id" (click)="removeConditionTypeFilter()">{{ selectedFilters.conditionType.name }}</mat-chip>
@@ -20,7 +21,7 @@
 <div class="mosaic-content">
 
     <div class="row">
-        <div class="col-md-3 mosaic-card" *ngFor="let item of mosaicData">
+        <div class="col-md-3 mosaic-card" *ngFor="let item of mosaicData" (click)="redirectToPublicationDetail(item)">
             <mat-card class="">
                 <mat-card-header>
                     <mat-card-title>{{ item.title }}</mat-card-title>

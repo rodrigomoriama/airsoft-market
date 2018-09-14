@@ -4,19 +4,19 @@ export class AppConstants {
 
   public static URL_MOSAIC_ALL = 'mosaic';
 
-  public static URL_PRODUCT_BY_ID = 'productDetail';
+  public static URL_PUBLICATION_BY_ID = 'publicationDetail';
 
-  public static URL_PRODUCT_PRODUCT_TYPE = 'productType';
-  public static URL_PRODUCT_OPERATION_TYPE = 'operationType';
-  public static URL_PRODUCT_PRODUCT_MODEL = 'model';
-  public static URL_PRODUCT_MANUFACTURER = 'manufacturer';
-  public static URL_PRODUCT_CONDITION_TYPE = 'conditionType';
-  public static URL_PRODUCT_MATERIAL_TYPE = 'materialType';
-  public static URL_PRODUCT_CALIBER_TYPE = 'caliberType';
-  public static URL_PRODUCT_MAGAZINE_TYPE = 'magazineType';
-  public static URL_PRODUCT_ACTIVATION_TYPE = 'activationType';
-  public static URL_PRODUCT_SYSTEM_TYPE = 'systemType';
-  public static URL_PRODUCT_LOCATION_CITY = 'locationCity';
+  public static URL_PUBLICATION_PRODUCT_TYPE = 'productType';
+  public static URL_PUBLICATION_OPERATION_TYPE = 'operationType';
+  public static URL_PUBLICATION_PRODUCT_MODEL = 'model';
+  public static URL_PUBLICATION_MANUFACTURER = 'manufacturer';
+  public static URL_PUBLICATION_CONDITION_TYPE = 'conditionType';
+  public static URL_PUBLICATION_MATERIAL_TYPE = 'materialType';
+  public static URL_PUBLICATION_CALIBER_TYPE = 'caliberType';
+  public static URL_PUBLICATION_MAGAZINE_TYPE = 'magazineType';
+  public static URL_PUBLICATION_ACTIVATION_TYPE = 'activationType';
+  public static URL_PUBLICATION_SYSTEM_TYPE = 'systemType';
+  public static URL_PUBLICATION_LOCATION_CITY = 'locationCity';
 
   // ********* PARAMS *******************
   public static PARAMS_MOSAIC_OPERATION_TYPE = 'operationType_like';

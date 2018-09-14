@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/internal/operators/catchError';
 
 @Injectable()
-export class ProductService {
+export class PublicationService {
 
   constructor(private apiService: ApiService) { }
 
@@ -15,22 +15,22 @@ export class ProductService {
     return Observable.throw(error || 'backend server error');
   }
 
-  getProductById(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_BY_ID, params).pipe(
+  getPublicationById(params: URLSearchParams, id) {
+    return this.apiService.get(`${AppConstants.URL_PUBLICATION_BY_ID}/${id}`, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getOperationType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_OPERATION_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_OPERATION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getProductType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_PRODUCT_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_PRODUCT_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -38,7 +38,7 @@ export class ProductService {
 
 
   getProductModel(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_PRODUCT_MODEL, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_PRODUCT_MODEL, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -46,7 +46,7 @@ export class ProductService {
 
 
   getManufacturer(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_MANUFACTURER, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_MANUFACTURER, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -54,49 +54,49 @@ export class ProductService {
 
 
   getConditionType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_CONDITION_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_CONDITION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getMaterialType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_MATERIAL_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_MATERIAL_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getCaliberType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_CALIBER_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_CALIBER_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getMagazineType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_MAGAZINE_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_MAGAZINE_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getActivationType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_ACTIVATION_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_ACTIVATION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getSystemType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_SYSTEM_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_SYSTEM_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getLocationCity(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PRODUCT_LOCATION_CITY, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_LOCATION_CITY, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );

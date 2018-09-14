@@ -1,4 +1,5 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
 body {
     margin: 0;
     background-color: #F1F1F1;
@@ -122,4 +123,47 @@ nav.navbar.navbar-fixed-top {
     font-weight: bold;
     margin-bottom: 5px;
     height: 20px;
+}
+
+.filter-content {
+    margin-bottom: 15px;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);   
+}
+
+.filter-content form {
+    margin: 12px;
+}
+
+.filter-content form .mat-form-field {
+    margin-right: 15px;
+    width: 100%;
+}
+
+.filter-activated {
+    margin-bottom: 10px;
+}
+
+.gallery-publication {
+    height: auto;
+    padding: 0;
+    height: 410px;
+}
+
+.user-info {
+    height: auto;
+    padding: 0;
+    height: 410px;
+    box-shadow: 0 2px 2px 0 transparent, 0 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.publication-detail {
+    width: 100%;
+    height: 500px;
+    background-color: #eeeeee8c;
+    margin-top: 10px;
+}
+
+.ngx-gallery-thumbnail {  
+    width: 33% !important;
+    height: 90px !important;
 }

@@ -8,6 +8,7 @@ import { Component, OnInit, OnDestroy, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { interval } from 'rxjs';
 import { MosaicFilter } from 'src/domain/mosaic-filter';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mosaic',
@@ -27,7 +28,8 @@ export class MosaicComponent implements OnInit, OnDestroy {
 
   @ViewChild('filter') filter: MosaicFilterComponent;
 
-  constructor(private mosaicService: MosaicService) {
+  constructor(private mosaicService: MosaicService,
+    private router: Router) {
     this.emptyItem = { id: null, name: '' };
   }
 
@@ -150,41 +152,58 @@ export class MosaicComponent implements OnInit, OnDestroy {
   removeOperationTypeFilter() {
     this.selectedFilters.operationType = this.emptyItem;
     this.loadData();
+    this.filter.filterForm.get('operationType').setValue(null);
   }
 
   removeProductTypeFilter() {
     this.selectedFilters.productType = this.emptyItem;
     this.loadData();
+    this.filter.filterForm.get('productType').setValue(null);
   }
 
   removeCaliberTypeFilter() {
     this.selectedFilters.caliberType = this.emptyItem;
     this.loadData();
+    this.filter.filterForm.get('caliberType').setValue(null);
   }
 
   removeSystemTypeFilter() {
     this.selectedFilters.systemType = this.emptyItem;
     this.loadData();
+    this.filter.filterForm.get('systemType').setValue(null);
   }
 
   removeConditionTypeFilter() {
     this.selectedFilters.conditionType = this.emptyItem;
     this.loadData();
+    this.filter.filterForm.get('conditionType').setValue(null);
   }
 
   removeModelFilter() {
     this.selectedFilters.model = this.emptyItem;
     this.loadData();
+    this.filter.filterForm.get('model').setValue(null);
   }
 
   removeManufacturerFilter() {
     this.selectedFilters.manufacturer = this.emptyItem;
     this.loadData();
+    this.filter.filterForm.get('manufacturer').setValue(null);
   }
 
   removeLocationFilter() {
     this.selectedFilters.location = this.emptyItem;
     this.loadData();
+    this.filter.filterForm.get('location').setValue('');
   }
 
+  removeTitleFilter() {
+    this.selectedFilters.title = '';
+    this.loadData();
+    this.filter.filterForm.get('title').setValue('');
+  }
+
+  redirectToPublicationDetail(item: Mosaic) {
+    this.router.navigate(['publication-detail', item.id]);
+  }
 }

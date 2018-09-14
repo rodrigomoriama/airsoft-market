@@ -1,65 +1,84 @@
 <form [formGroup]="filterForm" (keydown.enter)="$event.preventDefault()">
-    <mat-form-field>
-        <mat-select placeholder="Operação" formControlName="operationType">
-            <mat-option *ngFor="let item of operationType" [value]="item">
-                {{item.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+    <div class="row">
 
-    <mat-form-field>
-        <mat-select placeholder="Tipo de Produto" formControlName="productType">
-            <mat-option *ngFor="let item of productType" [value]="item">
-                {{item.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+        <div class="col-md-4">
+            <mat-form-field>
+                <input matInput placeholder="Título" formControlName="title" maxlength="50">
+            </mat-form-field>
+        </div>
 
-    <mat-form-field>
-        <mat-select placeholder="Condição" formControlName="conditionType">
-            <mat-option *ngFor="let item of conditionType" [value]="item">
-                {{item.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+        <div class="col-md-2">
+            <mat-form-field>
+                <mat-select placeholder="Operação" formControlName="operationType">
+                    <mat-option *ngFor="let item of operationType" [value]="item">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-    <mat-form-field>
-        <mat-select placeholder="Tipo de Calibre" formControlName="caliberType">
-            <mat-option *ngFor="let item of caliberType" [value]="item">
-                {{item.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+        <div class="col-md-2">
+            <mat-form-field>
+                <mat-select placeholder="Tipo de Produto" formControlName="productType">
+                    <mat-option *ngFor="let item of productType" [value]="item">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-    <mat-form-field>
-        <mat-select placeholder="Tipo de Sistema" formControlName="systemType">
-            <mat-option *ngFor="let item of systemType" [value]="item">
-                {{item.name}}
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+        <div class="col-md-3">
+            <mat-form-field>
+                <input matInput placeholder="Cidade" [matAutocomplete]="autoLocation" formControlName="locationName" (blur)="onSelectedItemLocation(filterForm.get('locationName').value)" maxlength="50">
+        
+                <button tabindex="-1" mat-button *ngIf="canClearField('locationName') && isDesktop" matSuffix mat-icon-button aria-label="Clear" (click)="filterForm.get('locationName').setValue('')">
+                <mat-icon>close</mat-icon>
+                </button>
+        
+                <mat-autocomplete #autoLocation="matAutocomplete">
+                    <mat-option *ngFor="let item of location" [value]="item" (onSelectionChange)="onSelectedItemLocation(item)">
+                        <span>{{ item.name }}/{{ item.uf }}</span>
+                    </mat-option>
+        
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
 
-    <mat-form-field>
-        <input matInput placeholder="Produto" formControlName="title" maxlength="50">
-    </mat-form-field>
+        <div class="col-md-2">
+            <mat-form-field>
+                <mat-select placeholder="Condição" formControlName="conditionType">
+                    <mat-option *ngFor="let item of conditionType" [value]="item">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-    <mat-form-field>
-        <input matInput placeholder="Cidade" [matAutocomplete]="autoLocation" formControlName="locationName" (blur)="onSelectedItemLocation(filterForm.get('locationName').value)" maxlength="50">
+        <div class="col-md-2">
+            <mat-form-field>
+                <mat-select placeholder="Tipo de Calibre" formControlName="caliberType">
+                    <mat-option *ngFor="let item of caliberType" [value]="item">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-        <button tabindex="-1" mat-button *ngIf="canClearField('locationName') && isDesktop" matSuffix mat-icon-button aria-label="Clear" (click)="filterForm.get('locationName').setValue('')">
-        <mat-icon>close</mat-icon>
-      </button>
+        <div class="col-md-3">
+            <mat-form-field>
+                <mat-select placeholder="Tipo de Sistema" formControlName="systemType">
+                    <mat-option *ngFor="let item of systemType" [value]="item">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-        <mat-autocomplete #autoLocation="matAutocomplete">
-            <mat-option *ngFor="let item of location" [value]="item" (onSelectionChange)="onSelectedItemLocation(item)">
-                <span>{{ item.name }}/{{ item.uf }}</span>
-            </mat-option>
-
-        </mat-autocomplete>
-    </mat-form-field>
-
-    <button mat-button (click)="onSubmit()">Filtrar</button>
-    <button (click)="cleanForm()" mat-icon-button>
-      <mat-icon>delete</mat-icon>
-    </button>
+        <div class="col-md-3">
+            <button mat-button (click)="onSubmit()">Filtrar</button>
+            <button (click)="cleanForm()" mat-icon-button>
+                <mat-icon>delete</mat-icon>
+            </button>
+        </div>
+    </div>
 </form>

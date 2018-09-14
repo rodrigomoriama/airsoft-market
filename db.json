@@ -9,7 +9,7 @@
         { "id": 7, "operationType": "Troca", "title": "asdlkjsdakljsda kljsdklj sda", "model": "M9", "manufacturer": "WE", "price": 1000.00, "amount": 1, "location": "São Paulo/SP", "thumb_path": "" }
     ],
 
-    "productDetail": [{
+    "publicationDetail": [{
         "id": 1,
         "operationType": "Venda",
         "title": "M4A1 full metal",

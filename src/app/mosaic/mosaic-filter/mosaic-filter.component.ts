@@ -1,10 +1,10 @@
+import { PublicationService } from './../../../providers/publication.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FormatFieldHelper } from './../../helpers/format-field-helper';
 import { MosaicFilter } from './../../../domain/mosaic-filter';
 import { URLSearchParams } from '@angular/http';
 import { forkJoin } from 'rxjs';
 import { Dropdown } from './../../../domain/dropdown';
-import { ProductService } from './../../../providers/product.service';
 import { Component, OnInit, AfterViewInit, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
@@ -33,7 +33,7 @@ export class MosaicFilterComponent implements OnInit, AfterViewInit {
   filterEmitter = new EventEmitter<MosaicFilter>();
   subscriptionLocation: Subscription;
 
-  constructor(private productService: ProductService,
+  constructor(private publicationService: PublicationService,
     private formBuilder: FormBuilder) {
 
     this.emptyItem = { id: null, name: '' };
@@ -59,11 +59,11 @@ export class MosaicFilterComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     forkJoin(
-      this.productService.getOperationType(new URLSearchParams),
-      this.productService.getProductType(new URLSearchParams),
-      this.productService.getConditionType(new URLSearchParams),
-      this.productService.getCaliberType(new URLSearchParams),
-      this.productService.getSystemType(new URLSearchParams),
+      this.publicationService.getOperationType(new URLSearchParams),
+      this.publicationService.getProductType(new URLSearchParams),
+      this.publicationService.getConditionType(new URLSearchParams),
+      this.publicationService.getCaliberType(new URLSearchParams),
+      this.publicationService.getSystemType(new URLSearchParams),
     ).subscribe(
       (data: [Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[]]) => {
 
@@ -152,7 +152,7 @@ export class MosaicFilterComponent implements OnInit, AfterViewInit {
     const params = new URLSearchParams();
     params.set('name_like', event);
 
-    this.productService.getLocationCity(params).subscribe(
+    this.publicationService.getLocationCity(params).subscribe(
       (location: Dropdown[]) => {
         this.location = location;
       },

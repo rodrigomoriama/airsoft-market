@@ -1,4 +1,4 @@
-import { ProductService } from './../../providers/product.service';
+import { PublicationService } from './../../providers/publication.service';
 import {
   MatChipsModule,
   MatIconModule,
@@ -45,7 +45,7 @@ import { MosaicFilterComponent } from './mosaic-filter/mosaic-filter.component';
   ],
   providers: [
     MosaicService,
-    ProductService
+    PublicationService
   ],
   entryComponents: [
 

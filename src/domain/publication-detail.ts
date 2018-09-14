@@ -1,4 +1,4 @@
-export interface ProductDetail {
+export interface PublicationDetail {
   id: number;
   operationType: string;
   title: string;
