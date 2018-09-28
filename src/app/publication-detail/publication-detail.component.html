@@ -1,27 +1,75 @@
 <div class="row">
-  <h1>title</h1>
+    <h1 *ngIf="hasData">{{detail.title}}</h1>
 </div>
 
 <div class="row">
-  <div class="col-sm-5 gallery-publication">
-    <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-  </div>
-  <div class="col-sm-3"></div>  
-  <div class="col-sm-4 user-info">
-    <h3>Informações do Usuário</h3>
-    <div>Nome: Nome Completo</div>
-    <div>Telefone: (99) 9999-9999</div>
-    <div>Celular: (99) 99999-9999</div>
-    <div>Email: teste@teste.com.br</div>
+    <div class="col-sm-5 gallery-publication">
+        <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+    </div>
+    <div class="col-sm-3"></div>
+    <div class="col-sm-4 user-info" *ngIf="hasData">
+        <div>
+            <div class="operation-type-field">{{detail.operationType}}</div>
+            <div class="price-field">{{detail.price | currency : 'R$'}}</div>
+            <div class="amount-field">Quantidade: {{detail.amount}}</div>
+        </div>
 
-    <button mat-button class="btn-send-notification" (click)="sendNotificationToUser()">Enviar notificação para contato</button>
+        <br>
 
-  </div>
+        <div><span>Condição:</span> {{detail.conditionType}}</div>
+        <div><span>Local:</span> {{detail.location}}</div>
+        <div><span>Validade:</span> {{detail.dtValidate}}</div>
+
+        <hr>
+
+        <h4>Informações do Usuário</h4>
+        <div><span>Nome:</span> {{detail.ownerName}}</div>
+        <div><span>Telefone:</span> {{detail.phone}}</div>
+        <div><span>Celular:</span> {{detail.cellphone}}</div>
+        <div><span>Email:</span> {{detail.email}}</div>
+
+        <hr>
+
+        <button mat-button>Editar</button>
+        <button mat-button>Prorrogar</button>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="sendNotificationToUser()">Enviar notificação para contato</button>
+            <button mat-menu-item (click)="sendMessageWhats()">Enviar Mensagem via Whatsapp</button>
+        </mat-menu>
+
+
+    </div>
 </div>
 
 <div class="row">
-  <div class="publication-detail">
-    <h3>Descrição</h3>
-  </div>
-</div>
+    <div class="publication-detail" *ngIf="hasData">
+        <h3>Descrição</h3>
+        <div class="description-field">{{detail.desc}}</div>
 
+        <div><span>Tipo:</span> {{detail.productType}}</div>
+        <div><span>Modelo:</span> {{detail.model}}</div>
+        <div><span>Marca:</span> {{detail.manufacturer}}</div>
+        <div><span>Material:</span> {{detail.materialType}}</div>
+        <div><span>Tipo de Sistema:</span> {{detail.systemType}}</div>
+        <div><span>Ação:</span> {{detail.activationType}}</div>
+        <div><span>Alcance:</span> ~ {{detail.range}}</div>
+        <div><span>Velocidade:</span> ~ {{detail.fps}}FPS</div>
+        <div><span>Calibre:</span> {{detail.caliberType}}</div>
+
+        <br>
+        <div><span>Upgrade:</span> {{translateBoolean(detail.hasUpgrade)}}</div>
+        <div>{{detail.upgrades}}</div>
+
+        <div><span>Itens Inclusos:</span> {{detail.itemsIncluded || 'NA'}}</div>
+
+        <div><span>Aceita Troca:</span> {{translateBoolean(detail.acceptExchange)}}</div>
+        <br>
+
+        <h4>Link</h4>
+        <a href="{{detail.website_link}}" target="_blank">{{detail.website_link}}</a>
+    </div>
+</div>

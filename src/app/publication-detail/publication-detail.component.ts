@@ -1,3 +1,6 @@
+import { FormatFieldHelper } from './../helpers/format-field-helper';
+import { AppConstants } from './../app.constants';
+import { ConvertDateTimeHelper } from './../helpers/convert-datetime-helper';
 import { MessagesHelper } from './../helpers/messages-helper';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { URLSearchParams } from '@angular/http';
@@ -19,6 +22,8 @@ export class PublicationDetailComponent implements OnInit {
 
   publicationCode: number;
   detail: PublicationDetail;
+  hasData: boolean;
+  cellphone: string;
 
   urlCodeSubscription: Subscription;
 
@@ -42,16 +47,30 @@ export class PublicationDetailComponent implements OnInit {
     this.loadData();
   }
 
-  loadData() {
+  loadData(): void {
     this.publicationService.getPublicationById(new URLSearchParams, this.publicationCode).subscribe(
       data => {
         this.detail = data;
+        this.hasData = true;
+
+        if (this.detail.dtValidate) {
+          this.detail.dtValidate = ConvertDateTimeHelper.convertEpochToDate(this.detail.dtValidate);
+        }
+
+        if (this.detail.phone) {
+          this.detail.phone = FormatFieldHelper.formatFieldPhone(this.detail.phone);
+        }
+
+        if (this.detail.cellphone) {
+          this.cellphone = this.detail.cellphone;
+          this.detail.cellphone = FormatFieldHelper.formatFieldCellPhone(this.detail.cellphone);
+        }
       },
       error => console.log(error)
     );
   }
 
-  loadGalleryConfig() {
+  loadGalleryConfig(): void {
     this.galleryOptions = [
       {
         // previewAnimation: false,
@@ -81,7 +100,7 @@ export class PublicationDetailComponent implements OnInit {
     ];
   }
 
-  loadGalleryImages() {
+  loadGalleryImages(): void {
     this.galleryImages = [];
     this.galleryImages.push({
       small: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/300px-No_image_available.svg.png',
@@ -108,7 +127,7 @@ export class PublicationDetailComponent implements OnInit {
     });
   }
 
-  sendNotificationToUser() {
+  sendNotificationToUser(): void {
 
     if (!this.hasSentNotification) {
       MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Notificação enviado com sucesso !');
@@ -116,5 +135,13 @@ export class PublicationDetailComponent implements OnInit {
     } else {
       MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Você já enviou uma notificação para o usuário');
     }
+  }
+
+  translateBoolean(value: boolean): string {
+    return value ? 'Sim' : 'Não';
+  }
+
+  sendMessageWhats(): void {
+    window.open(`${AppConstants.URL_WHATSAPP_MESSAGE}55${this.detail.cellphone}`);
   }
 }

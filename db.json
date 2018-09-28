@@ -11,6 +11,7 @@
 
     "publicationDetail": [{
         "id": 1,
+        "codeOperationType": [2],
         "operationType": "Venda",
         "title": "M4A1 full metal",
         "productType": "Airsoft",
@@ -20,21 +21,18 @@
         "price": 1000.00,
         "amount": 1,
         "conditionType": "Novo",
-        "hasUpgrade": false,
+        "hasUpgrade": true,
+        "upgrades": "Cano de precição 6.01, bucking, nozzle e hopup",
         "location": "São Paulo/SP",
         "itemsIncluded": "",
         "acceptExchange": true,
         "caliberType": "6mm",
-        "magazineAmount": 1,
-        "magazineType": "Mid-Cap",
-        "magazineRounds": "120",
         "systemType": "GBB (Gás Blowback)",
         "activationType": "Green Gás",
-        "weight": "NA",
         "range": "35 metros",
-        "fps": "NA",
-        "phone": "(11) 9999-9999",
-        "celphone": "(11) 99999-9999",
+        "fps": "300",
+        "phone": "01199999999",
+        "cellphone": "011999999999",
         "email": "teste@teste.com.br",
         "ownerName": "Name Test",
         "meetingPoint": "",
@@ -44,7 +42,10 @@
             "",
             "",
             ""
-        ]
+        ],
+        "dtValidate": 1540752931,
+        "desc": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "website_link": "https://www.tryvendas.com.br/home1/Pistola-de-Airsoft-GBB-Cybergun-P226-Xfive-Cal-6mm"
     }],
     "productType": [
         { "id": "1", "name": "Airsoft" },
@@ -108,11 +109,6 @@
         { "id": 1, "name": "6mm" },
         { "id": 2, "name": "5.5mm" },
         { "id": 3, "name": "4.5mm" }
-    ],
-    "magazineType": [
-        { "id": 1, "name": "Low Cap" },
-        { "id": 2, "name": "Mid Cap" },
-        { "id": 3, "name": "High Cap" }
     ],
     "activationType": [
         { "id": 1, "name": "Green Gás" },

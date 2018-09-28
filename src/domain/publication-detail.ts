@@ -1,5 +1,6 @@
 export interface PublicationDetail {
   id: number;
+  codeOperationType: number[];
   operationType: string;
   title: string;
   productType: string;
@@ -10,22 +11,22 @@ export interface PublicationDetail {
   amount: number;
   conditionType: string;
   hasUpgrade: boolean;
+  upgrades: string;
   location: string;
   itemsIncluded: string;
   acceptExchange: boolean;
   caliberType: string;
-  magazineAmount: number;
-  magazineType: string;
-  magazineRounds: number;
   systemType: string;
   activationType: string;
-  weight: string;
   range: string;
   fps: string;
   phone: string;
-  celphone: string;
+  cellphone: string;
   email: string;
   ownerName: string;
   meetingPoint: string;
   images_path: string[];
+  dtValidate: string;
+  desc: string;
+  website_link: string;
 }

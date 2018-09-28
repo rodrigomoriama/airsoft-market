@@ -1,4 +1,4 @@
-import { MatIconModule, MatButtonModule, MatSnackBarModule } from '@angular/material';
+import { MatMenuModule, MatIconModule, MatButtonModule, MatSnackBarModule } from '@angular/material';
 import { ApiService } from './../providers/api.service';
 import { MosaicModule } from './mosaic/mosaic.module';
 import { AppRoutingModule } from './app.routing.module';
@@ -13,6 +13,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpModule } from '@angular/http';
 import { PublicationDetailComponent } from './publication-detail/publication-detail.component';
 import { NgxGalleryModule } from 'ngx-gallery';
+import { PublicationComponent } from './publication/publication.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { NgxGalleryModule } from 'ngx-gallery';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    PublicationDetailComponent
+    PublicationDetailComponent,
+    PublicationComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,8 @@ import { NgxGalleryModule } from 'ngx-gallery';
     MatIconModule,
     MatButtonModule,
     NgxGalleryModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [
     ApiService,

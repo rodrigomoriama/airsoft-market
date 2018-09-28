@@ -59,27 +59,27 @@ export class FormatFieldHelper {
 
   static formatFieldCNPJ(field: string): string {
     if (field.length === 14) {
-      return `${this.formatAmount(field.substring(0, 8))}/${field.substring(8, 12)}-${field.substring(13)}`;
+      return `${this.formatAmount(field.substring(0, 8))}/${field.substring(8, 12)}-${field.substring(12)}`;
     }
     return field;
   }
 
   static formatFieldPhone(field: string): string {
-    // phone field -> DD + phone
-    if (field.length === 10) {
-      return `(${field.substring(0, 2)}) ${field.substring(2, 6)}-${field.substring(6)}`;
+    // phone field -> DDD + phone
+    if (field.length === 11) {
+      return `(${field.substring(0, 3)}) ${field.substring(3, 7)}-${field.substring(7)}`;
     }
     return '';
   }
 
   static formatFieldCellPhone(field: string): string {
-    // phone field -> DD + phone
-    if (field.length === 10) {
+    // phone field -> DDD + phone
+    if (field.length === 11) {
       return this.formatFieldPhone(field);
     }
 
-    if (field.length === 11) {
-      return `(${field.substring(0, 2)}) ${field.substring(2, 7)}-${field.substring(7)}`;
+    if (field.length === 12) {
+      return `(${field.substring(0, 3)}) ${field.substring(3, 8)}-${field.substring(8)}`;
     }
     return '';
   }

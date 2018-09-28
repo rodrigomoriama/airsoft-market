@@ -2,6 +2,8 @@ export class AppConstants {
 
   public static INTERVAL_CHECK_MOSAIC = 10000;
 
+  public static URL_WHATSAPP_MESSAGE = 'https://wa.me/';
+
   public static URL_MOSAIC_ALL = 'mosaic';
 
   public static URL_PUBLICATION_BY_ID = 'publicationDetail';

@@ -1,3 +1,44 @@
 .btn-send-notification {
-  background-color: #83fd93;
+    background-color: #83fd93;
+}
+
+.publication-detail {
+    padding: 10px;
+}
+
+.publication-detail span {
+    font-weight: bold;
+}
+
+.description-field {
+    margin-bottom: 20px;
+}
+
+.user-info span {
+    font-weight: bold;
+}
+
+.operation-type-field {
+    text-align: center;
+    background-color: #28A745;
+    color: white;
+    font-weight: bold;
+    font-size: 1.3em;
+    margin: 0 -13px;
+}
+
+.dt-validate-field {
+    font-weight: bold;
+    font-size: 1.3em;
+}
+
+.price-field {
+    font-weight: bold;
+    font-size: 1.3em;
+    text-align: center;
+}
+
+.amount-field {
+    font-size: small;
+    text-align: center;
 }
