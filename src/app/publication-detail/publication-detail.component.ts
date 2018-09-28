@@ -114,7 +114,7 @@ export class PublicationDetailComponent implements OnInit {
       MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Notificação enviado com sucesso !');
       this.hasSentNotification = true;
     } else {
-      MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Você já enviou notoficação para o usuário');
+      MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Você já enviou uma notificação para o usuário');
     }
   }
 }
