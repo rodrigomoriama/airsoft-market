@@ -1,4 +1,17 @@
-import { MatMenuModule, MatIconModule, MatButtonModule, MatSnackBarModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import {
+  MatMenuModule,
+  MatIconModule,
+  MatButtonModule,
+  MatSnackBarModule,
+  MatFormFieldModule,
+  MatAutocompleteModule,
+  MatInputModule,
+  MatSelectModule,
+  MatSlideToggleModule,
+  MatCheckboxModule
+} from '@angular/material';
 import { ApiService } from './../providers/api.service';
 import { MosaicModule } from './mosaic/mosaic.module';
 import { AppRoutingModule } from './app.routing.module';
@@ -36,7 +49,17 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatButtonModule,
     NgxGalleryModule,
     MatSnackBarModule,
-    MatMenuModule
+    MatMenuModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatInputModule,
+    MatSelectModule,
+    MatSlideToggleModule,
+    MatCheckboxModule,
+    ReactiveFormsModule,
+    FormsModule,
+    BrowserAnimationsModule,
+    BrowserModule
   ],
   providers: [
     ApiService,

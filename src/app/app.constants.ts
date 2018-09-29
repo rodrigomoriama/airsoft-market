@@ -2,6 +2,10 @@ export class AppConstants {
 
   public static INTERVAL_CHECK_MOSAIC = 10000;
 
+  public static OPERATION_TYPE_BUY = 1;
+  public static OPERATION_TYPE_SELL = 2;
+  public static OPERATION_TYPE_EXCHANGE = 3;
+
   public static URL_WHATSAPP_MESSAGE = 'https://wa.me/';
 
   public static URL_MOSAIC_ALL = 'mosaic';

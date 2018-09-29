@@ -1,3 +1,18 @@
-<p>
-  publication works!
-</p>
+<form [formGroup]="publicationForm" (keydown.enter)="$event.preventDefault()">
+
+    <div class="row">
+        <div class="col-md-8">
+            <mat-form-field>
+                <input matInput placeholder="Título" formControlName="title" maxlength="50">
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-2">
+            <mat-checkbox (change)="selectOperationType($event, 1)" formControlName="opBuy">Compra</mat-checkbox>
+            <mat-checkbox (change)="selectOperationType($event, 2)" formControlName="opSell">Venda</mat-checkbox>
+            <mat-checkbox (change)="selectOperationType($event, 3)" formControlName="opExchange">Troca</mat-checkbox>
+        </div>
+
+    </div>
+
+</form>
