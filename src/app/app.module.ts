@@ -12,6 +12,7 @@ import {
   MatSlideToggleModule,
   MatCheckboxModule
 } from '@angular/material';
+import { CurrencyMaskModule } from 'ngx-currency-mask';
 import { ApiService } from './../providers/api.service';
 import { MosaicModule } from './mosaic/mosaic.module';
 import { AppRoutingModule } from './app.routing.module';
@@ -59,7 +60,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
-    BrowserModule
+    BrowserModule,
+    CurrencyMaskModule
   ],
   providers: [
     ApiService,

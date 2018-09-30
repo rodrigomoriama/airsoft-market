@@ -19,6 +19,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
   publicationForm: FormGroup;
 
   codeOperationType: number[];
+  hasUp: boolean;
 
   productType: Dropdown[];
   conditionType: Dropdown[];
@@ -52,7 +53,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       'codeSystemType': [null],
       'codeActivationType': [null],
 
-      'price': [null],
+      'price': [0],
       'amount': [null],
 
       'hasUpgrade': [false],
@@ -97,6 +98,8 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscriptionLocation.unsubscribe();
+    this.subscriptionManufacturer.unsubscribe();
+    this.subscriptionModel.unsubscribe();
   }
 
   onSubmit() {
@@ -211,6 +214,10 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   canClearField(fieldName: string): boolean {
     return this.publicationForm.get(fieldName).value && this.publicationForm.get(fieldName).enabled;
+  }
+
+  hasUpChange(value): void {
+    this.hasUp = value.checked;
   }
 
   onSelectedProductType() {

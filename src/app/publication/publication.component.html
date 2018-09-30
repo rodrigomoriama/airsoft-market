@@ -4,6 +4,9 @@
         <div class="col-md-8">
             <mat-form-field>
                 <input matInput placeholder="Título" formControlName="title" maxlength="50" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('title')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('title').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
             </mat-form-field>
         </div>
 
@@ -27,7 +30,7 @@
             <mat-form-field>
                 <input matInput placeholder="Modelo" [matAutocomplete]="autoModel" formControlName="modelName" (blur)="onSelectedItemModel(publicationForm.get('modelName').value)" maxlength="50" required>
 
-                <button tabindex="-1" mat-button *ngIf="canClearField('modelName') && isDesktop" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('modelName').setValue('')">
+                <button tabindex="-1" mat-button *ngIf="canClearField('modelName')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('modelName').setValue('')">
                 <mat-icon>close</mat-icon>
             </button>
 
@@ -39,11 +42,12 @@
                 </mat-autocomplete>
             </mat-form-field>
         </div>
+
         <div class="col-md-3">
             <mat-form-field>
                 <input matInput placeholder="Fabricante" [matAutocomplete]="autoManufacturer" formControlName="manufacturerName" (blur)="onSelectedItemManufacturer(publicationForm.get('manufacturerName').value)" maxlength="50">
 
-                <button tabindex="-1" mat-button *ngIf="canClearField('manufacturerName') && isDesktop" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('manufacturerName').setValue('')">
+                <button tabindex="-1" mat-button *ngIf="canClearField('manufacturerName')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('manufacturerName').setValue('')">
               <mat-icon>close</mat-icon>
           </button>
 
@@ -66,15 +70,66 @@
             </mat-form-field>
         </div>
 
+        <div class="col-md-2">
+            <mat-form-field>
+                <mat-select placeholder="Condição" formControlName="codeConditionType">
+                    <mat-option *ngFor="let item of conditionType" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+
+        <div class="col-md-8"></div>
+
+        <div class="col-md-2">
+            <mat-form-field id="price">
+                <input type="tel" matInput currencyMask formControlName="price" [options]="{ prefix: 'R$', thousands: '.', decimal: ',', align: 'left' }" maxlength="12" placeholder="Preço" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('price')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('price').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-2">
+            <mat-form-field class="custom-width-form-qtd" id="amount">
+                <input type="tel" matInput currencyMask formControlName="amount" placeholder="Quantidade" [options]="{ prefix: '', thousands: '.', align: 'left', precision: 0}" maxlength="12" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('amount')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('amount').setValue('')">
+                  <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-8"></div>
 
 
 
+        <div class="col-md-2">
+            <mat-checkbox formControlName="hasUpgrade" (change)="hasUpChange($event)">Tem Upgrade ?</mat-checkbox>
+        </div>
+
+        <div class="col-md-12" *ngIf="hasUp">
+            <mat-form-field id="note">
+                <textarea matInput #txtInputUpgrades placeholder="Upgrades" maxlength="2000" formControlName="upgrades" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
+                <button tabindex="-1" mat-button *ngIf="canClearField('upgrades')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('upgrades').setValue('')">
+                <mat-icon>close</mat-icon>
+              </button>
+                <mat-hint align="end">{{txtInputUpgrades.value?.length || 0}}/2000</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-12"></div>
+
+        <div class="col-md-2">
+            <mat-checkbox formControlName="acceptExchange">Aceita Troca ?</mat-checkbox>
+        </div>
 
         <div class="col-md-3">
             <mat-form-field>
                 <input matInput placeholder="Cidade" [matAutocomplete]="autoLocation" formControlName="locationName" (blur)="onSelectedItemLocation(publicationForm.get('locationName').value)" maxlength="50">
 
-                <button tabindex="-1" mat-button *ngIf="canClearField('locationName') && isDesktop" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('locationName').setValue('')">
+                <button tabindex="-1" mat-button *ngIf="canClearField('locationName')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('locationName').setValue('')">
                   <mat-icon>close</mat-icon>
               </button>
 
