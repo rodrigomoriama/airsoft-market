@@ -3,16 +3,93 @@
     <div class="row">
         <div class="col-md-8">
             <mat-form-field>
-                <input matInput placeholder="Título" formControlName="title" maxlength="50">
+                <input matInput placeholder="Título" formControlName="title" maxlength="50" required>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-12 pb-operation-type-field">
+            <mat-checkbox (change)="selectOperationType($event, 2)" formControlName="opSell">Venda</mat-checkbox>
+            <mat-checkbox (change)="selectOperationType($event, 1)" formControlName="opBuy">Compra</mat-checkbox>
+            <mat-checkbox (change)="selectOperationType($event, 3)" formControlName="opExchange">Troca</mat-checkbox>
+        </div>
+
+        <div class="col-md-4">
+            <mat-form-field>
+                <mat-select placeholder="Tipo de Produto" formControlName="codeProductType" (selectionChange)="onSelectedProductType()" required>
+                    <mat-option *ngFor="let item of productType" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4">
+            <mat-form-field>
+                <input matInput placeholder="Modelo" [matAutocomplete]="autoModel" formControlName="modelName" (blur)="onSelectedItemModel(publicationForm.get('modelName').value)" maxlength="50" required>
+
+                <button tabindex="-1" mat-button *ngIf="canClearField('modelName') && isDesktop" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('modelName').setValue('')">
+                <mat-icon>close</mat-icon>
+            </button>
+
+                <mat-autocomplete #autoModel="matAutocomplete">
+                    <mat-option *ngFor="let item of model" [value]="item" (onSelectionChange)="onSelectedItemModel(item)">
+                        <span>{{ item.name }}</span>
+                    </mat-option>
+
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+        <div class="col-md-3">
+            <mat-form-field>
+                <input matInput placeholder="Fabricante" [matAutocomplete]="autoManufacturer" formControlName="manufacturerName" (blur)="onSelectedItemManufacturer(publicationForm.get('manufacturerName').value)" maxlength="50">
+
+                <button tabindex="-1" mat-button *ngIf="canClearField('manufacturerName') && isDesktop" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('manufacturerName').setValue('')">
+              <mat-icon>close</mat-icon>
+          </button>
+
+                <mat-autocomplete #autoManufacturer="matAutocomplete">
+                    <mat-option *ngFor="let item of manufacturer" [value]="item" (onSelectionChange)="onSelectedItemManufacturer(item)">
+                        <span>{{ item.name }}</span>
+                    </mat-option>
+
+                </mat-autocomplete>
             </mat-form-field>
         </div>
 
         <div class="col-md-2">
-            <mat-checkbox (change)="selectOperationType($event, 1)" formControlName="opBuy">Compra</mat-checkbox>
-            <mat-checkbox (change)="selectOperationType($event, 2)" formControlName="opSell">Venda</mat-checkbox>
-            <mat-checkbox (change)="selectOperationType($event, 3)" formControlName="opExchange">Troca</mat-checkbox>
+            <mat-form-field>
+                <mat-select placeholder="Material" formControlName="codeMaterialType">
+                    <mat-option *ngFor="let item of materialType" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
         </div>
 
+
+
+
+
+        <div class="col-md-3">
+            <mat-form-field>
+                <input matInput placeholder="Cidade" [matAutocomplete]="autoLocation" formControlName="locationName" (blur)="onSelectedItemLocation(publicationForm.get('locationName').value)" maxlength="50">
+
+                <button tabindex="-1" mat-button *ngIf="canClearField('locationName') && isDesktop" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('locationName').setValue('')">
+                  <mat-icon>close</mat-icon>
+              </button>
+
+                <mat-autocomplete #autoLocation="matAutocomplete">
+                    <mat-option *ngFor="let item of location" [value]="item" (onSelectionChange)="onSelectedItemLocation(item)">
+                        <span>{{ item.name }}/{{ item.uf }}</span>
+                    </mat-option>
+
+                </mat-autocomplete>
+            </mat-form-field>
+        </div>
+
+
     </div>
+
+    <button mat-button (click)="onSubmit()">Publicar</button>
 
 </form>
