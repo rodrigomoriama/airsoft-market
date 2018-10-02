@@ -1,3 +1,6 @@
+import { MatSnackBar } from '@angular/material';
+import { MessagesHelper } from './../helpers/messages-helper';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormatFieldHelper } from './../helpers/format-field-helper';
 import { debounceTime } from 'rxjs/internal/operators/debounceTime';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -8,6 +11,7 @@ import { Dropdown } from './../../domain/dropdown';
 import { AppConstants } from './../app.constants';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
+import { SafeUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-publication',
@@ -20,11 +24,13 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   codeOperationType: number[];
   hasUp: boolean;
+  isAlter: boolean;
 
   productType: Dropdown[];
   conditionType: Dropdown[];
   caliberType: Dropdown[];
   systemType: Dropdown[];
+  activationType: Dropdown[];
   location: Dropdown[];
   model: Dropdown[];
   manufacturer: Dropdown[];
@@ -32,12 +38,21 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   emptyItem: Dropdown;
 
+  // MEDIAS
+  fileMediaUpload: File[];
+  fileMediaUploadAlter: any[];
+
+  subscription: Subscription;
   subscriptionLocation: Subscription;
   subscriptionModel: Subscription;
   subscriptionManufacturer: Subscription;
 
   constructor(private formBuilder: FormBuilder,
-    private publicationService: PublicationService) {
+    private publicationService: PublicationService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    public snackBar: MatSnackBar,
+    private sanitizer: DomSanitizer) {
 
     this.emptyItem = { id: null, name: '' };
 
@@ -54,7 +69,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       'codeActivationType': [null],
 
       'price': [0],
-      'amount': [null],
+      'amount': [1],
 
       'hasUpgrade': [false],
       'acceptExchange': [false],
@@ -82,21 +97,32 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
       'locationName': [''],
       'modelName': [''],
-      'manufacturerName': ['']
+      'manufacturerName': [''],
 
+      'fileMediaUploadMainIndex': [0]
     });
   }
 
   ngOnInit() {
+    this.fileMediaUpload = [];
+    this.fileMediaUploadAlter = [];
     this.codeOperationType = [];
+
     this.loadFieldsData();
   }
 
   ngAfterViewInit() {
     this.subscribeCombos();
+
+    this.subscription = this.activatedRoute.queryParamMap.subscribe(params => {
+      if (params.get('idOrder')) {
+        this.isAlter = true;
+      }
+    });
   }
 
   ngOnDestroy() {
+    this.subscription.unsubscribe();
     this.subscriptionLocation.unsubscribe();
     this.subscriptionManufacturer.unsubscribe();
     this.subscriptionModel.unsubscribe();
@@ -117,8 +143,10 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       this.publicationService.getSystemType(new URLSearchParams),
       this.publicationService.getManufacturer(new URLSearchParams),
       this.publicationService.getMaterialType(new URLSearchParams),
+      this.publicationService.getActivationType(new URLSearchParams),
+      this.publicationService.getLocationCity(new URLSearchParams),
     ).subscribe(
-      (data: [Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[]]) => {
+      (data: [Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[]]) => {
 
         this.productType = data[0];
         this.conditionType = data[1];
@@ -126,35 +154,38 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
         this.systemType = data[3];
         this.manufacturer = data[4];
         this.materialType = data[5];
+        this.activationType = data[6];
+        this.location = data[7];
 
         this.productType.unshift(this.emptyItem);
         this.conditionType.unshift(this.emptyItem);
         this.caliberType.unshift(this.emptyItem);
         this.systemType.unshift(this.emptyItem);
         this.materialType.unshift(this.emptyItem);
+        this.activationType.unshift(this.emptyItem);
       },
       error => console.log(error)
-      );
+    );
   }
 
   subscribeCombos() {
     this.subscriptionLocation = this.publicationForm.get('locationName').valueChanges
       .pipe(
-      debounceTime(400)
+        debounceTime(400)
       ).subscribe(value => {
         this.onFilterLocation(value);
       });
 
     this.subscriptionModel = this.publicationForm.get('modelName').valueChanges
       .pipe(
-      debounceTime(400)
+        debounceTime(400)
       ).subscribe(value => {
         this.onFilterModel(value);
       });
 
     this.subscriptionManufacturer = this.publicationForm.get('manufacturerName').valueChanges
       .pipe(
-      debounceTime(400)
+        debounceTime(400)
       ).subscribe(value => {
         this.onFilterManufacturer(value);
       });
@@ -356,7 +387,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
         this.publicationForm.get('codeManufacturer').setValue(null);
         this.publicationForm.get('manufacturerName').setValue(event);
       } else {
-        this.onClearModelDropdown();
+        this.onClearManufacturerDropdown();
       }
     }
   }
@@ -384,4 +415,86 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
     );
   }
 
+  backToHome() {
+    this.router.navigate(['home']);
+  }
+
+  getUrlFromImageUpload(fileImage: File): SafeUrl {
+    return this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(fileImage));
+  }
+
+  onFileMediaSelect(fileInput) {
+
+    if (!this.isAlter) {
+      if (this.fileMediaUpload.length >= 5) {
+        MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Apenas 5 imagens serão salvos');
+        return;
+      }
+
+      if (fileInput.target.files.length > 0) {
+        this.publicationForm.get('fileMediaUploadMainIndex').setValue(fileInput.target.files[0]);
+        for (let index = 0; index < fileInput.target.files.length; index++) {
+          if (index >= 5) {
+            MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Apenas 5 imagens serão salvos');
+            return;
+          }
+          if (!this.fileMediaUpload.includes(fileInput.target.files[index])) {
+            this.fileMediaUpload.push(fileInput.target.files[index]);
+          }
+        }
+      }
+    } else { // Alter Offer
+      // if (this.fileMediaUpload.length + this.fileMediaUploadAlter.length >= 5) {
+      //   MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Apenas 5 imagens serão salvos');
+      //   return;
+      // }
+
+      // if (fileInput.target.files.length > 0) {
+
+      //   for (let index = 0; index < fileInput.target.files.length; index++) {
+      //     if (index >= 5) {
+      //       MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Apenas 5 imagens serão salvos');
+      //       return;
+      //     }
+      //     if (!this.fileMediaUpload.includes(fileInput.target.files[index])) {
+      //       this.fileMediaUpload.push(fileInput.target.files[index]);
+      //     }
+      //   }
+      // }
+    }
+  }
+
+  onDeleteMediaFile(fileImage: File): void {
+    const index = this.fileMediaUpload.findIndex(image => image === fileImage);
+    this.fileMediaUpload.splice(index, 1);
+    this.publicationForm.get('fileMediaUploadMainIndex').setValue(this.fileMediaUpload[0]);
+
+    // Remove CSS de erro caso tenha
+    // switch (index) {
+    //   case 0:
+    //     this.fileMedia0HasError = false;
+    //     break;
+    //   case 1:
+    //     this.fileMedia1HasError = false;
+    //     break;
+    //   case 2:
+    //     this.fileMedia2HasError = false;
+    //     break;
+    //   case 3:
+    //     this.fileMedia3HasError = false;
+    //     break;
+    //   case 4:
+    //     this.fileMedia4HasError = false;
+    //     break;
+    // }
+  }
+
+  isFileMediaMain(fileImage: File): boolean {
+    return this.publicationForm.get('fileMediaUploadMainIndex').value === fileImage;
+  }
+
+  onSelectedMediaIndex() {
+    console.log(this.publicationForm.get('fileMediaUploadMainIndex').value);
+
+  }
 }

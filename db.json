@@ -118,7 +118,7 @@
         { "id": 1, "name": "Spring" },
         { "id": 2, "name": "Elétrico" },
         { "id": 3, "name": "GBB (Gás Blowback)" },
-        { "id": 4, "name": "GNBB (Gás Non Blowback)" }
+        { "id": 4, "name": "NBB (Gás Non Blowback)" }
     ],
     "locationCity": [
         { "id": 1, "name": "Acre", "uf": "AC" },

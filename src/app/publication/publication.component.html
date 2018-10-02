@@ -1,11 +1,12 @@
 <form [formGroup]="publicationForm" (keydown.enter)="$event.preventDefault()">
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-11">
             <mat-form-field>
-                <input matInput placeholder="Título" formControlName="title" maxlength="50" required>
-                <button tabindex="-1" mat-button *ngIf="canClearField('title')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('title').setValue('')">
-                  <mat-icon>close</mat-icon>
+                <input matInput placeholder="Título" formControlName="title" maxlength="120" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('title')" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="publicationForm.get('title').setValue('')">
+                    <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
         </div>
@@ -18,7 +19,8 @@
 
         <div class="col-md-4">
             <mat-form-field>
-                <mat-select placeholder="Tipo de Produto" formControlName="codeProductType" (selectionChange)="onSelectedProductType()" required>
+                <mat-select placeholder="Tipo de Produto" formControlName="codeProductType" (selectionChange)="onSelectedProductType()"
+                    required>
                     <mat-option *ngFor="let item of productType" [value]="item.id">
                         {{item.name}}
                     </mat-option>
@@ -28,11 +30,13 @@
 
         <div class="col-md-4">
             <mat-form-field>
-                <input matInput placeholder="Modelo" [matAutocomplete]="autoModel" formControlName="modelName" (blur)="onSelectedItemModel(publicationForm.get('modelName').value)" maxlength="50" required>
+                <input matInput placeholder="Modelo" [matAutocomplete]="autoModel" formControlName="modelName" (blur)="onSelectedItemModel(publicationForm.get('modelName').value)"
+                    maxlength="50" required>
 
-                <button tabindex="-1" mat-button *ngIf="canClearField('modelName')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('modelName').setValue('')">
-                <mat-icon>close</mat-icon>
-            </button>
+                <button tabindex="-1" mat-button *ngIf="canClearField('modelName')" matSuffix mat-icon-button
+                    aria-label="Clear" (click)="publicationForm.get('modelName').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
 
                 <mat-autocomplete #autoModel="matAutocomplete">
                     <mat-option *ngFor="let item of model" [value]="item" (onSelectionChange)="onSelectedItemModel(item)">
@@ -45,11 +49,13 @@
 
         <div class="col-md-3">
             <mat-form-field>
-                <input matInput placeholder="Fabricante" [matAutocomplete]="autoManufacturer" formControlName="manufacturerName" (blur)="onSelectedItemManufacturer(publicationForm.get('manufacturerName').value)" maxlength="50">
+                <input matInput placeholder="Fabricante" [matAutocomplete]="autoManufacturer" formControlName="manufacturerName"
+                    (blur)="onSelectedItemManufacturer(publicationForm.get('manufacturerName').value)" maxlength="50">
 
-                <button tabindex="-1" mat-button *ngIf="canClearField('manufacturerName')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('manufacturerName').setValue('')">
-              <mat-icon>close</mat-icon>
-          </button>
+                <button tabindex="-1" mat-button *ngIf="canClearField('manufacturerName')" matSuffix mat-icon-button
+                    aria-label="Clear" (click)="publicationForm.get('manufacturerName').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
 
                 <mat-autocomplete #autoManufacturer="matAutocomplete">
                     <mat-option *ngFor="let item of manufacturer" [value]="item" (onSelectionChange)="onSelectedItemManufacturer(item)">
@@ -80,58 +86,93 @@
             </mat-form-field>
         </div>
 
+        <div class="col-md-2">
+            <mat-form-field>
+                <mat-select placeholder="Calibre" formControlName="codeCaliberType">
+                    <mat-option *ngFor="let item of caliberType" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
 
-        <div class="col-md-8"></div>
+        <div class="col-md-2">
+            <mat-form-field>
+                <mat-select placeholder="Tipo de Sistema" formControlName="codeSystemType">
+                    <mat-option *ngFor="let item of systemType" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-2">
+            <mat-form-field>
+                <mat-select placeholder="Ativação" formControlName="codeActivationType">
+                    <mat-option *ngFor="let item of activationType" [value]="item.id">
+                        {{item.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-2"></div>
 
         <div class="col-md-2">
             <mat-form-field id="price">
-                <input type="tel" matInput currencyMask formControlName="price" [options]="{ prefix: 'R$', thousands: '.', decimal: ',', align: 'left' }" maxlength="12" placeholder="Preço" required>
-                <button tabindex="-1" mat-button *ngIf="canClearField('price')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('price').setValue('')">
-                  <mat-icon>close</mat-icon>
+                <input type="tel" matInput currencyMask formControlName="price" [options]="{ prefix: 'R$', thousands: '.', decimal: ',', align: 'left' }"
+                    maxlength="12" placeholder="Preço" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('price')" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="publicationForm.get('price').setValue('0')">
+                    <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
         </div>
 
         <div class="col-md-2">
             <mat-form-field class="custom-width-form-qtd" id="amount">
-                <input type="tel" matInput currencyMask formControlName="amount" placeholder="Quantidade" [options]="{ prefix: '', thousands: '.', align: 'left', precision: 0}" maxlength="12" required>
-                <button tabindex="-1" mat-button *ngIf="canClearField('amount')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('amount').setValue('')">
-                  <mat-icon>close</mat-icon>
+                <input type="tel" matInput currencyMask formControlName="amount" placeholder="Quantidade" [options]="{ prefix: '', thousands: '.', align: 'left', precision: 0}"
+                    maxlength="12" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('amount')" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="publicationForm.get('amount').setValue('1')">
+                    <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
         </div>
 
         <div class="col-md-8"></div>
 
-
-
         <div class="col-md-2">
-            <mat-checkbox formControlName="hasUpgrade" (change)="hasUpChange($event)">Tem Upgrade ?</mat-checkbox>
-        </div>
-
-        <div class="col-md-12" *ngIf="hasUp">
-            <mat-form-field id="note">
-                <textarea matInput #txtInputUpgrades placeholder="Upgrades" maxlength="2000" formControlName="upgrades" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"></textarea>
-                <button tabindex="-1" mat-button *ngIf="canClearField('upgrades')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('upgrades').setValue('')">
-                <mat-icon>close</mat-icon>
-              </button>
-                <mat-hint align="end">{{txtInputUpgrades.value?.length || 0}}/2000</mat-hint>
+            <mat-form-field>
+                <input matInput placeholder="Distância~ (metros)" formControlName="range" maxlength="3" type="tel">
+                <button tabindex="-1" mat-button *ngIf="canClearField('range')" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="publicationForm.get('range').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
             </mat-form-field>
         </div>
 
-        <div class="col-md-12"></div>
-
         <div class="col-md-2">
-            <mat-checkbox formControlName="acceptExchange">Aceita Troca ?</mat-checkbox>
+            <mat-form-field>
+                <input matInput placeholder="FPS~" formControlName="fps" maxlength="3" type="tel">
+                <button tabindex="-1" mat-button *ngIf="canClearField('fps')" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="publicationForm.get('fps').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
         </div>
 
-        <div class="col-md-3">
-            <mat-form-field>
-                <input matInput placeholder="Cidade" [matAutocomplete]="autoLocation" formControlName="locationName" (blur)="onSelectedItemLocation(publicationForm.get('locationName').value)" maxlength="50">
+        <div class="col-md-8"></div>
 
-                <button tabindex="-1" mat-button *ngIf="canClearField('locationName')" matSuffix mat-icon-button aria-label="Clear" (click)="publicationForm.get('locationName').setValue('')">
-                  <mat-icon>close</mat-icon>
-              </button>
+        <div class="col-md-4">
+            <mat-form-field>
+                <input matInput placeholder="Cidade" [matAutocomplete]="autoLocation" formControlName="locationName"
+                    (blur)="onSelectedItemLocation(publicationForm.get('locationName').value)" maxlength="50">
+
+                <button tabindex="-1" mat-button *ngIf="canClearField('locationName')" matSuffix mat-icon-button
+                    aria-label="Clear" (click)="publicationForm.get('locationName').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
 
                 <mat-autocomplete #autoLocation="matAutocomplete">
                     <mat-option *ngFor="let item of location" [value]="item" (onSelectionChange)="onSelectedItemLocation(item)">
@@ -142,9 +183,97 @@
             </mat-form-field>
         </div>
 
+        <div class="col-md-8"></div>
+
+        <div class="col-md-8">
+            <mat-form-field>
+                <textarea matInput #txtInputItemsIncluded placeholder="Itens Inclusos" maxlength="2000" formControlName="itemsIncluded"
+                    matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="20"></textarea>
+                <button tabindex="-1" mat-button *ngIf="canClearField('itemsIncluded')" matSuffix mat-icon-button
+                    aria-label="Clear" (click)="publicationForm.get('itemsIncluded').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-hint align="end">{{txtInputItemsIncluded.value?.length || 0}}/2000</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4"></div>
+
+        <div class="col-md-2">
+            <mat-checkbox formControlName="hasUpgrade" (change)="hasUpChange($event)">Tem Upgrade ?</mat-checkbox>
+        </div>
+        <div class="col-md-4" *ngIf="hasUp"></div>
+        <div class="col-md-8" *ngIf="hasUp">
+            <mat-form-field id="note">
+                <textarea matInput #txtInputUpgrades placeholder="Upgrades" maxlength="2000" formControlName="upgrades"
+                    matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="20"></textarea>
+                <button tabindex="-1" mat-button *ngIf="canClearField('upgrades')" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="publicationForm.get('upgrades').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+                <mat-hint align="end">{{txtInputUpgrades.value?.length || 0}}/2000</mat-hint>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-12"></div>
+
+        <div class="col-md-2">
+            <mat-checkbox formControlName="acceptExchange">Aceita Troca ?</mat-checkbox>
+        </div>
+
+        <div class="col-md-10"></div>
+
+
+
+        <div class="col-md-12">
+            <hr>
+
+            <div class="publication-images-upload">
+                <p class="alert alert-warning">** A imagem precisa ter o formato JPG/PNG. Poderá adicionar no máximo 5 fotos.</p>
+                <input type="file" accept=".png, .jpg" (change)="onFileMediaSelect($event)" [multiple]="true">
+                <div style="width: 300px; margin-top: 18px;">
+                    <mat-form-field *ngIf="fileMediaUpload.length > 0">
+                        <mat-select placeholder="Selecione a imagem principal" formControlName="fileMediaUploadMainIndex"
+                            (selectionChange)="onSelectedMediaIndex()">
+                            <mat-option *ngFor="let item of fileMediaUpload" [value]="item">
+                                {{item.name}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="publication-images-selected" *ngIf="fileMediaUpload.length > 0">
+                <!-- <div style="float: right">{{fileMediaUpload.length + fileMediaUploadAlter.length}}/5 Imagens</div> -->
+                <div class="prod-cards">
+                    <div *ngIf="fileMediaUpload.length > 0" style="display: contents;">
+                        <mat-card class="prod-card-image" *ngFor="let file of fileMediaUpload" [class.prod-card-image-main]="isFileMediaMain(file)">
+                            <img mat-card-image class="prod-images-thumb" [src]="getUrlFromImageUpload(file)" alt="">
+                            <mat-card-actions class="card-actions-publication-img">
+                                <button mat-raised-button color="warn" (click)="onDeleteMediaFile(file)">Remover</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div>
+                    <!-- <div *ngIf="fileMediaUploadAlter.length > 0" style="display: contents;">
+                        <mat-card class="offer-card-image" *ngFor="let file of fileMediaUploadAlter"
+                            [class.offer-card-image-error]="hasImageError(file)" [class.offer-card-image-alter]="fileMediaUploadAlter.length > 0">
+                            <img mat-card-image class="offer-images-thumb" [src]="getUrlFromImageUploadAlter(file)" alt="">
+                            <mat-card-content>
+                                <span>{{file.code}}.{{file.extension}}</span>
+                            </mat-card-content>
+                            <mat-card-actions>
+                                <button mat-button (click)="onDeleteMediaFileAlter(file)">Remover</button>
+                            </mat-card-actions>
+                        </mat-card>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
 
     </div>
 
     <button mat-button (click)="onSubmit()">Publicar</button>
+    <button mat-button (click)="backToHome()">Cancelar</button>
 
 </form>

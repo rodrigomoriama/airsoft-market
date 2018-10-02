@@ -3,6 +3,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
   MatMenuModule,
   MatIconModule,
+  MatRadioModule,
   MatButtonModule,
   MatSnackBarModule,
   MatFormFieldModule,
@@ -10,7 +11,8 @@ import {
   MatInputModule,
   MatSelectModule,
   MatSlideToggleModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatCardModule
 } from '@angular/material';
 import { CurrencyMaskModule } from 'ngx-currency-mask';
 import { ApiService } from './../providers/api.service';
@@ -57,6 +59,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatSelectModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    MatCardModule,
+    MatRadioModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
