@@ -1,3 +1,4 @@
+import { LoginModule } from './login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {
@@ -65,7 +66,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FormsModule,
     BrowserAnimationsModule,
     BrowserModule,
-    CurrencyMaskModule
+    CurrencyMaskModule,
+    LoginModule
   ],
   providers: [
     ApiService,

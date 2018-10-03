@@ -20,4 +20,8 @@ export class HeaderComponent implements OnInit {
   goToPublication() {
     this.router.navigate(['new-publication']);
   }
+
+  goToLogin() {
+    this.router.navigate(['login']);
+  }
 }

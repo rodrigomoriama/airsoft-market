@@ -1,0 +1,12 @@
+.login-content {
+    height: 600px;
+}
+
+.login-content-form {}
+
+.forgot-password-content {}
+
+.register-content {
+    border-left-style: outset;
+    border-left-width: thin;
+}

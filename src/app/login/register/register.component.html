@@ -1,0 +1,40 @@
+<h3>Cadastre-se</h3>
+
+<form [formGroup]="registerForm" (keydown.enter)="$event.preventDefault()">
+    <mat-form-field>
+        <input matInput placeholder="E-mail" formControlName="email" maxlength="60" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('email').setValue('')">
+        <mat-icon>close</mat-icon>
+    </button>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Senha" formControlName="password" minlength="6" type="password" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('password')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('password').setValue('')">
+          <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Confirme a Senha" formControlName="confirmPassword" minlength="6" type="password" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('confirmPassword')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('confirmPassword').setValue('')">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Nome" formControlName="firstName" minlength="6" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('firstName')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('firstName').setValue('')">
+      <mat-icon>close</mat-icon>
+    </button>
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput placeholder="Sobrenome" formControlName="lastName" minlength="6" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('lastName')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('lastName').setValue('')">
+    <mat-icon>close</mat-icon>
+  </button>
+    </mat-form-field>
+
+    <button mat-button (click)="onSubmit()">Cadastrar</button>
+</form>

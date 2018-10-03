@@ -1,3 +1,4 @@
+import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PublicationComponent } from './publication/publication.component';
 import { PublicationDetailComponent } from './publication-detail/publication-detail.component';
@@ -12,6 +13,8 @@ const appRoutes: Routes = [
     { path: 'new-publication/:id', component: PublicationComponent },
 
     { path: 'publication-detail/:id', component: PublicationDetailComponent },
+
+    { path: 'login', component: LoginComponent },
 
     { path: 'home', component: MosaicComponent },
     { path: '', redirectTo: '/home', pathMatch: 'full' },
