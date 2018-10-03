@@ -92,7 +92,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       'phone': [''],
       'cellphone': [''],
       'email': [''],
-      'ownerName': [''],
+      'username': [''],
       'meetingPoint': [''],
       'dtValidate': [''],
       'desc': [''],
@@ -136,6 +136,8 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onSubmit() {
+    this.unmaskField();
+
     const formData = new FormData;
     formData.set('codeOperationType', <any>this.codeOperationType);
 
@@ -509,7 +511,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.showRegisteredInfo = value.checked;
 
     if (value.checked) {
-      this.publicationForm.get('ownerName').setValue(LocalStorageHelper.getUsername());
+      this.publicationForm.get('username').setValue(LocalStorageHelper.getUsername());
       this.publicationForm.get('phone').setValue(LocalStorageHelper.getPhone());
       this.publicationForm.get('cellphone').setValue(LocalStorageHelper.getCellphone());
       this.publicationForm.get('email').setValue(LocalStorageHelper.getEmail());
@@ -518,7 +520,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       this.enableContactFields();
 
-      this.publicationForm.get('ownerName').setValue('');
+      this.publicationForm.get('username').setValue('');
       this.publicationForm.get('phone').setValue('');
       this.publicationForm.get('cellphone').setValue('');
       this.publicationForm.get('email').setValue('');
@@ -526,16 +528,26 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   disableContactField() {
-    this.publicationForm.get('ownerName').disable();
+    this.publicationForm.get('username').disable();
     this.publicationForm.get('phone').disable();
     this.publicationForm.get('cellphone').disable();
     this.publicationForm.get('email').disable();
   }
 
   enableContactFields() {
-    this.publicationForm.get('ownerName').enable();
+    this.publicationForm.get('username').enable();
     this.publicationForm.get('phone').enable();
     this.publicationForm.get('cellphone').enable();
     this.publicationForm.get('email').enable();
+  }
+
+  unmaskField() {
+    if (this.publicationForm.get('phone').value) {
+      this.publicationForm.get('phone').setValue(FormatFieldHelper.unmaskField(this.publicationForm.get('phone').value));
+    }
+
+    if (this.publicationForm.get('cellphone').value) {
+      this.publicationForm.get('cellphone').setValue(FormatFieldHelper.unmaskField(this.publicationForm .get('cellphone').value));
+    }
   }
 }

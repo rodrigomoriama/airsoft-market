@@ -21,10 +21,9 @@ export class RegisterComponent implements OnInit {
       'email': [''],
       'password': [''],
       'confirmPassword': [''],
-      'firstName': [''],
-      'lastName': [''],
-      'phone': [null],
-      'cellphone': [null]
+      'username': [''],
+      'phone': [''],
+      'cellphone': ['']
     });
 
     this.masks = FormatFieldHelper.getMasks();

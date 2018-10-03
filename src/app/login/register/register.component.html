@@ -2,18 +2,10 @@
 
 <form [formGroup]="registerForm" (keydown.enter)="$event.preventDefault()">
 
-    <mat-form-field class="register-field-col-1">
-        <input matInput placeholder="Nome" formControlName="firstName" maxlength="30" required>
-        <button tabindex="-1" mat-button *ngIf="canClearField('firstName')" matSuffix mat-icon-button aria-label="Clear"
-            (click)="registerForm.get('firstName').setValue('')">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-form-field>
-
-    <mat-form-field class="register-field-col-2">
-        <input matInput placeholder="Sobrenome" formControlName="lastName" maxlength="30" required>
-        <button tabindex="-1" mat-button *ngIf="canClearField('lastName')" matSuffix mat-icon-button aria-label="Clear"
-            (click)="registerForm.get('lastName').setValue('')">
+    <mat-form-field>
+        <input matInput placeholder="Nome Completo" formControlName="username" maxlength="100" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('username')" matSuffix mat-icon-button aria-label="Clear"
+            (click)="registerForm.get('username').setValue('')">
             <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
