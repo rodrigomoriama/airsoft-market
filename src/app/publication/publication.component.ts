@@ -1,3 +1,4 @@
+import { LocalStorageHelper } from './../helpers/local-storage-helper';
 import { MatSnackBar } from '@angular/material';
 import { MessagesHelper } from './../helpers/messages-helper';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -38,6 +39,10 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   emptyItem: Dropdown;
 
+  showRegisteredInfo: boolean;
+
+  masks: any;
+
   // MEDIAS
   fileMediaUpload: File[];
   fileMediaUploadAlter: any[];
@@ -76,7 +81,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       'opBuy': [false],
       'opSell': [true],
       'opExchange': [false],
-
+      'sendRegisteredInfo': [false],
 
       'title': [''],
       'upgrades': [''],
@@ -101,6 +106,8 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
       'fileMediaUploadMainIndex': [0]
     });
+
+    this.masks = FormatFieldHelper.getMasks();
   }
 
   ngOnInit() {
@@ -496,5 +503,39 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
   onSelectedMediaIndex() {
     console.log(this.publicationForm.get('fileMediaUploadMainIndex').value);
 
+  }
+
+  changeRegisteredInfo(value: any) {
+    this.showRegisteredInfo = value.checked;
+
+    if (value.checked) {
+      this.publicationForm.get('ownerName').setValue(LocalStorageHelper.getUsername());
+      this.publicationForm.get('phone').setValue(LocalStorageHelper.getPhone());
+      this.publicationForm.get('cellphone').setValue(LocalStorageHelper.getCellphone());
+      this.publicationForm.get('email').setValue(LocalStorageHelper.getEmail());
+
+      this.disableContactField();
+    } else {
+      this.enableContactFields();
+
+      this.publicationForm.get('ownerName').setValue('');
+      this.publicationForm.get('phone').setValue('');
+      this.publicationForm.get('cellphone').setValue('');
+      this.publicationForm.get('email').setValue('');
+    }
+  }
+
+  disableContactField() {
+    this.publicationForm.get('ownerName').disable();
+    this.publicationForm.get('phone').disable();
+    this.publicationForm.get('cellphone').disable();
+    this.publicationForm.get('email').disable();
+  }
+
+  enableContactFields() {
+    this.publicationForm.get('ownerName').enable();
+    this.publicationForm.get('phone').enable();
+    this.publicationForm.get('cellphone').enable();
+    this.publicationForm.get('email').enable();
   }
 }

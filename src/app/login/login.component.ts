@@ -1,7 +1,6 @@
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core/src/change_detection/change_detector_ref';
+import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -12,6 +11,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   loginForm: FormGroup;
   showForgotPassword: boolean;
+
+  hidePassword = true;
 
   @ViewChild('inputPassword') inputPassword;
   @ViewChild('inputLogin') inputLogin;
@@ -43,16 +44,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     console.log(this.loginForm.value);
   }
 
-  backToHome() {
-    this.router.navigate(['home']);
-  }
-
   focusLogin() {
     this.inputLogin.nativeElement.focus();
-  }
-
-  forgotPassBack() {
-    this.showForgotPassword = false;
   }
 
   focusPassword() {

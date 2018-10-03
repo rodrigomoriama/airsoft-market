@@ -37,4 +37,9 @@ export class AppConstants {
   public static PARAMS_MOSAIC_HAS_UPGRADE = 'hasUpgrade';
   public static PARAMS_MOSAIC_ACCEPT_EXCHANGE = 'acceptExchange';
 
+  // ********* LOCAL STORAGE KEYS *******************
+  public static LOCAL_STORAGE_EMAIL = 'email';
+  public static LOCAL_STORAGE_USERNAME = 'username';
+  public static LOCAL_STORAGE_PHONE = 'phone';
+  public static LOCAL_STORAGE_CELLPHONE = 'cellphone';
 }

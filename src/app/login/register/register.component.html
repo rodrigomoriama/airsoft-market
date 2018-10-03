@@ -1,40 +1,58 @@
 <h3>Cadastre-se</h3>
 
 <form [formGroup]="registerForm" (keydown.enter)="$event.preventDefault()">
-    <mat-form-field>
-        <input matInput placeholder="E-mail" formControlName="email" maxlength="60" required>
-        <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('email').setValue('')">
-        <mat-icon>close</mat-icon>
-    </button>
-    </mat-form-field>
 
-    <mat-form-field>
-        <input matInput placeholder="Senha" formControlName="password" minlength="6" type="password" required>
-        <button tabindex="-1" mat-button *ngIf="canClearField('password')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('password').setValue('')">
-          <mat-icon>close</mat-icon>
+    <mat-form-field class="register-field-col-1">
+        <input matInput placeholder="Nome" formControlName="firstName" maxlength="30" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('firstName')" matSuffix mat-icon-button aria-label="Clear"
+            (click)="registerForm.get('firstName').setValue('')">
+            <mat-icon>close</mat-icon>
         </button>
     </mat-form-field>
 
-    <mat-form-field>
-        <input matInput placeholder="Confirme a Senha" formControlName="confirmPassword" minlength="6" type="password" required>
-        <button tabindex="-1" mat-button *ngIf="canClearField('confirmPassword')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('confirmPassword').setValue('')">
-        <mat-icon>close</mat-icon>
-      </button>
+    <mat-form-field class="register-field-col-2">
+        <input matInput placeholder="Sobrenome" formControlName="lastName" maxlength="30" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('lastName')" matSuffix mat-icon-button aria-label="Clear"
+            (click)="registerForm.get('lastName').setValue('')">
+            <mat-icon>close</mat-icon>
+        </button>
+    </mat-form-field>
+
+    <mat-form-field class="register-field-col-1">
+        <input matInput [textMask]="{mask: masks.cellphone}" type="tel" placeholder="Celular" formControlName="cellphone"
+            maxlength="25" required>
+    </mat-form-field>
+
+    <mat-form-field class="register-field-col-2">
+        <input matInput [textMask]="{mask: masks.phone}" type="tel" placeholder="Telefone" formControlName="phone"
+            maxlength="25">
     </mat-form-field>
 
     <mat-form-field>
-        <input matInput placeholder="Nome" formControlName="firstName" minlength="6" required>
-        <button tabindex="-1" mat-button *ngIf="canClearField('firstName')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('firstName').setValue('')">
-      <mat-icon>close</mat-icon>
-    </button>
+        <input matInput placeholder="E-mail" formControlName="email" maxlength="60" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear"
+            (click)="registerForm.get('email').setValue('')">
+            <mat-icon>close</mat-icon>
+        </button>
     </mat-form-field>
 
-    <mat-form-field>
-        <input matInput placeholder="Sobrenome" formControlName="lastName" minlength="6" required>
-        <button tabindex="-1" mat-button *ngIf="canClearField('lastName')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('lastName').setValue('')">
-    <mat-icon>close</mat-icon>
-  </button>
+    <mat-form-field class="register-field-col-1">
+        <input matInput placeholder="Senha" formControlName="password" minlength="6" type="password" [type]="hidePassword ? 'password' : 'text'"
+            required>
+        <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}</mat-icon>
     </mat-form-field>
+
+    <mat-form-field class="register-field-col-2">
+        <input matInput placeholder="Confirme a Senha" formControlName="confirmPassword" minlength="6" type="password"
+            [type]="hideConfirmPassword ? 'password' : 'text'" required>
+        <mat-icon matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{hideConfirmPassword ? 'visibility' :
+            'visibility_off'}}</mat-icon>
+    </mat-form-field>
+
+
+
+
+
 
     <button mat-button (click)="onSubmit()">Cadastrar</button>
 </form>

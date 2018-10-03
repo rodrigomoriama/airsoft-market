@@ -223,13 +223,12 @@
 
         <div class="col-md-10"></div>
 
-
-
         <div class="col-md-12">
             <hr>
 
             <div class="publication-images-upload">
-                <p class="alert alert-warning">** A imagem precisa ter o formato JPG/PNG. Poderá adicionar no máximo 5 fotos.</p>
+                <p class="alert alert-warning">** A imagem precisa ter o formato JPG/PNG. Poderá adicionar no máximo 5
+                    fotos.</p>
                 <input type="file" accept=".png, .jpg" (change)="onFileMediaSelect($event)" [multiple]="true">
                 <div style="width: 300px; margin-top: 18px;">
                     <mat-form-field *ngIf="fileMediaUpload.length > 0">
@@ -247,7 +246,8 @@
                 <!-- <div style="float: right">{{fileMediaUpload.length + fileMediaUploadAlter.length}}/5 Imagens</div> -->
                 <div class="prod-cards">
                     <div *ngIf="fileMediaUpload.length > 0" style="display: contents;">
-                        <mat-card class="prod-card-image" *ngFor="let file of fileMediaUpload" [class.prod-card-image-main]="isFileMediaMain(file)">
+                        <mat-card class="prod-card-image" *ngFor="let file of fileMediaUpload"
+                            [class.prod-card-image-main]="isFileMediaMain(file)">
                             <img mat-card-image class="prod-images-thumb" [src]="getUrlFromImageUpload(file)" alt="">
                             <mat-card-actions class="card-actions-publication-img">
                                 <button mat-raised-button color="warn" (click)="onDeleteMediaFile(file)">Remover</button>
@@ -270,6 +270,56 @@
             </div>
         </div>
 
+        <div class="col-md-12">
+            <hr>
+            <h4>Informação para Contato</h4>
+        </div>
+
+        <div class="col-md-12">
+            <mat-checkbox formControlName="sendRegisteredInfo" (change)="changeRegisteredInfo($event)">
+                Utilizar Informações Cadastrado
+            </mat-checkbox>
+        </div>
+
+        <div class="col-md-8">
+            <mat-form-field>
+                <input matInput placeholder="Nome Completo" formControlName="ownerName" maxlength="60" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('ownerName')" matSuffix mat-icon-button
+                    aria-label="Clear" (click)="publicationForm.get('ownerName').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4"></div>
+
+        <div class="col-md-8">
+            <mat-form-field>
+                <input matInput placeholder="E-mail" formControlName="email" maxlength="60" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="publicationForm.get('email').setValue('')">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-4"></div>
+
+        <div class="col-md-3">
+            <mat-form-field>
+                <input matInput [textMask]="{mask: masks.phone}" type="tel" placeholder="Telefone" formControlName="phone"
+                    maxlength="25" required>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-3">
+            <mat-form-field>
+                <input matInput [textMask]="{mask: masks.cellphone}" type="tel" placeholder="Celular" formControlName="cellphone"
+                    maxlength="25" required>
+            </mat-form-field>
+        </div>
+
+        <div class="col-md-6"></div>
 
     </div>
 

@@ -1,5 +1,5 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
-import { FormControl } from '@angular/forms/src/model';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-forgot-password',
@@ -8,13 +8,17 @@ import { FormControl } from '@angular/forms/src/model';
 })
 export class ForgotPasswordComponent implements OnInit {
 
-  email: FormControl;
-  backToLoginEmitter = new EventEmitter<any>();
+  forgotPasswordForm: FormGroup;
+  @Output() backToLoginEmitter = new EventEmitter<any>();
 
-  constructor() { }
+  constructor(private formBuilder: FormBuilder) {
+    this.forgotPasswordForm = this.formBuilder.group({
+      'email': ['']
+    });
+  }
 
   ngOnInit() {
-    this.email.setValue('');
+    this.forgotPasswordForm.get('email').setValue('');
   }
 
   backToLogin() {
@@ -22,10 +26,10 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   canClearField(fieldName: string): boolean {
-    return this.email.get(fieldName).value && this.email.get(fieldName).enabled;
+    return this.forgotPasswordForm.get(fieldName).value && this.forgotPasswordForm.get(fieldName).enabled;
   }
 
   onSubmit() {
-    console.log(this.email.get('email').value);
+    console.log(this.forgotPasswordForm.get('email').value);
   }
 }

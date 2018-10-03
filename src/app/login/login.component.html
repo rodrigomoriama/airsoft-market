@@ -5,17 +5,19 @@
         <form [formGroup]="loginForm" (keydown.enter)="$event.preventDefault()">
             <h3>Login</h3>
             <mat-form-field>
-                <input matInput placeholder="E-mail" formControlName="email" maxlength="60" (keydown.enter)="focusPassword()" #inputLogin required>
-                <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('email').setValue('')">
+                <input matInput placeholder="E-mail" formControlName="email" maxlength="60" (keydown.enter)="focusPassword()"
+                    #inputLogin required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="loginForm.get('email').setValue('')">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Senha" formControlName="password" minlength="6" type="password" #inputPassword required>
-                <button tabindex="-1" mat-button *ngIf="canClearField('password')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('password').setValue('')">
-                    <mat-icon>close</mat-icon>
-                </button>
+                <input matInput placeholder="Senha" formControlName="password" minlength="6" type="password" [type]="hidePassword ? 'password' : 'text'"
+                    #inputPassword required>
+                <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' :
+                    'visibility_off'}}</mat-icon>
             </mat-form-field>
 
             <div>
@@ -23,14 +25,13 @@
             </div>
             <div>
                 <button mat-button (click)="onSubmit()">Entrar</button>
-                <button mat-button (click)="backToHome()">Voltar</button>
             </div>
         </form>
     </div>
 
     <!-- Forgot Password -->
     <div class="col-md-6 forgot-password-content" *ngIf="showForgotPassword">
-        <app-forgot-password (backToLoginEmitter)="forgotPassBack()"></app-forgot-password>
+        <app-forgot-password (backToLoginEmitter)="showForgotPassword=false"></app-forgot-password>
     </div>
 
     <!-- Register -->

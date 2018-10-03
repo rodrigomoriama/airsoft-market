@@ -6,6 +6,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { TextMaskModule } from 'angular2-text-mask';
+
 import {
   MatIconModule,
   MatButtonModule,
@@ -30,6 +32,7 @@ import {
     MatSelectModule,
     MatSlideToggleModule,
     MatCheckboxModule,
+    TextMaskModule
   ],
   declarations: [
     LoginComponent,
