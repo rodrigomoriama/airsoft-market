@@ -23,7 +23,7 @@ export interface PublicationDetail {
   phone: string;
   cellphone: string;
   email: string;
-  ownerName: string;
+  username: string;
   meetingPoint: string;
   images_path: string[];
   dtValidate: string;

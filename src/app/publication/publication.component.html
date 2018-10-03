@@ -283,9 +283,9 @@
 
         <div class="col-md-8">
             <mat-form-field>
-                <input matInput placeholder="Nome Completo" formControlName="ownerName" maxlength="60" required>
-                <button tabindex="-1" mat-button *ngIf="canClearField('ownerName')" matSuffix mat-icon-button
-                    aria-label="Clear" (click)="publicationForm.get('ownerName').setValue('')">
+                <input matInput placeholder="Nome Completo" formControlName="username" maxlength="60" required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('username')" matSuffix mat-icon-button
+                    aria-label="Clear" (click)="publicationForm.get('username').setValue('')">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
