@@ -1,3 +1,4 @@
+import { ReportPublicationComponent } from './../modal/report-publication/report-publication.component';
 import { FormatFieldHelper } from './../helpers/format-field-helper';
 import { AppConstants } from './../app.constants';
 import { ConvertDateTimeHelper } from './../helpers/convert-datetime-helper';
@@ -9,7 +10,7 @@ import { PublicationService } from './../../providers/publication.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-publication-detail',
@@ -32,7 +33,8 @@ export class PublicationDetailComponent implements OnInit {
 
   constructor(private publicationService: PublicationService,
     private activatedRoute: ActivatedRoute,
-    private snackBar: MatSnackBar) { }
+    private snackBar: MatSnackBar,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.urlCodeSubscription = this.activatedRoute.params.subscribe(
@@ -143,5 +145,17 @@ export class PublicationDetailComponent implements OnInit {
 
   sendMessageWhats(): void {
     window.open(`${AppConstants.URL_WHATSAPP_MESSAGE}55${this.detail.cellphone}`);
+  }
+
+  reportPublication(): void {
+    const dialogRef = this.dialog.open(ReportPublicationComponent, {
+      data: this.detail
+    });
+
+    dialogRef.beforeClose().subscribe(data => {
+      if (data) {
+        MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Denúncia enviado com sucesso !');
+      }
+    });
   }
 }

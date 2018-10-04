@@ -1,0 +1,51 @@
+<h3>Meu Perfil</h3>
+
+<form [formGroup]="profileForm" (keydown.enter)="$event.preventDefault()">
+  <div class="row">
+    <div class="col-md-5">
+      <mat-form-field>
+        <input matInput placeholder="Nome Completo" formControlName="username" maxlength="100" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('username')" matSuffix mat-icon-button aria-label="Clear"
+            (click)="profileForm.get('username').setValue('')">
+            <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>      
+    </div>
+
+    <div class="col-md-5">
+      <mat-form-field>
+        <input matInput placeholder="E-mail" formControlName="email" maxlength="60" required>
+        <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear"
+            (click)="profileForm.get('email').setValue('')">
+            <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-2"></div>
+
+    <div class="col-md-3">
+      <mat-form-field class="register-field-col-1">
+        <input matInput [textMask]="{mask: masks.cellphone}" type="tel" placeholder="Celular" formControlName="cellphone"
+            maxlength="25" required>
+      </mat-form-field>
+    </div>
+
+    <div class="col-md-3">
+      <mat-form-field class="register-field-col-2">
+        <input matInput [textMask]="{mask: masks.phone}" type="tel" placeholder="Telefone" formControlName="phone"
+            maxlength="25">
+      </mat-form-field>
+    </div>
+
+    
+    <div class="col-md-12">
+      <button mat-button (click)="onSubmit()">Enviar</button>  
+    </div>
+
+    <div class="col-md-12">
+      
+    </div>
+  </div>
+</form>
+

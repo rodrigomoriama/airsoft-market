@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { PublicationComponent } from './publication/publication.component';
@@ -8,6 +9,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
+
+    { path: 'profile', component: ProfileComponent },
 
     { path: 'new-publication', component: PublicationComponent },
     { path: 'new-publication/:id', component: PublicationComponent },

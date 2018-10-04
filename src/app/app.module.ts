@@ -1,3 +1,4 @@
+import { ProfileModule } from './profile/profile.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { LoginModule } from './login/login.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,7 +15,8 @@ import {
   MatSelectModule,
   MatSlideToggleModule,
   MatCheckboxModule,
-  MatCardModule
+  MatCardModule,
+  MatDialogModule
 } from '@angular/material';
 import { CurrencyMaskModule } from 'ngx-currency-mask';
 import { ApiService } from './../providers/api.service';
@@ -33,6 +35,7 @@ import { PublicationDetailComponent } from './publication-detail/publication-det
 import { NgxGalleryModule } from 'ngx-gallery';
 import { PublicationComponent } from './publication/publication.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ReportPublicationComponent } from './modal/report-publication/report-publication.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,11 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FooterComponent,
     PublicationDetailComponent,
     PublicationComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    ReportPublicationComponent
+  ],
+  entryComponents: [
+    ReportPublicationComponent
   ],
   imports: [
     BrowserModule,
@@ -63,13 +70,15 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatCheckboxModule,
     MatCardModule,
     MatRadioModule,
+    MatDialogModule,
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
     BrowserModule,
     CurrencyMaskModule,
     LoginModule,
-    TextMaskModule
+    TextMaskModule,
+    ProfileModule
   ],
   providers: [
     ApiService,
