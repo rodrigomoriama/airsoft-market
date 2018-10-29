@@ -1,0 +1,35 @@
+TO DO
+
+FRONTEND
+- Ver Perfil de outros
+- Meu Perfil (Update)
+- Denunciar Perfil
+
+- Editar Publicação
+- Deletar Publicação
+- Prorrogar Publicação
+- Denunciar Publicação
+
+- ADM - CRUD de Usuário
+- ADM - CRUD publicações
+
+
+- Cadastrar como Armeiro
+- Cadastrar como Lojista
+- Cadastrar como Pessoa Física
+- Listar todos os cadastro Armeiros
+- Listar todos cadastro de Lojista 
+- Upload de imagem do meu perfil
+
+BACKEND
+- Login
+- Esqueci a Senha
+- CRUD de Usuário
+- CRUD de Publicação
+
+----------------------------------
+
+DONE
+
+
+
