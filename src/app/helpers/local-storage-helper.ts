@@ -29,4 +29,12 @@ export class LocalStorageHelper {
   static getCellphone(): string {
     return window.localStorage.getItem(AppConstants.LOCAL_STORAGE_CELLPHONE);
   }
+
+  static getToken(): string {
+    return window.localStorage.getItem(AppConstants.LOCAL_STORAGE_TOKEN);
+  }
+
+  static getUserLoggedIn(): boolean {
+    return window.localStorage.getItem(AppConstants.LOCAL_STORAGE_HAS_LOGGED_IN) === 'true';
+  }
 }

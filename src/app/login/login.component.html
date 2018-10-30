@@ -2,22 +2,19 @@
 
     <!-- Login -->
     <div class="col-md-6 login-content-form" *ngIf="!showForgotPassword">
-        <form [formGroup]="loginForm" (keydown.enter)="$event.preventDefault()">
+        <form [formGroup]="loginForm" (keydown.enter)="onSubmit()">
             <h3>Login</h3>
             <mat-form-field>
-                <input matInput placeholder="E-mail" formControlName="email" maxlength="60" (keydown.enter)="focusPassword()"
-                    #inputLogin required>
-                <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear"
-                    (click)="loginForm.get('email').setValue('')">
+                <input matInput placeholder="E-mail" formControlName="email" maxlength="60" (keydown.enter)="focusPassword()" #inputLogin required>
+                <button tabindex="-1" mat-button *ngIf="canClearField('email')" matSuffix mat-icon-button aria-label="Clear" (click)="loginForm.get('email').setValue('')">
                     <mat-icon>close</mat-icon>
                 </button>
             </mat-form-field>
 
             <mat-form-field>
-                <input matInput placeholder="Senha" formControlName="password" minlength="6" type="password" [type]="hidePassword ? 'password' : 'text'"
-                    #inputPassword required>
-                <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' :
-                    'visibility_off'}}</mat-icon>
+                <input matInput placeholder="Senha" formControlName="password" minlength="6" type="password" [type]="hidePassword ? 'password' : 'text'" #inputPassword required>
+                <mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility' : 'visibility_off'}}
+                </mat-icon>
             </mat-form-field>
 
             <div>

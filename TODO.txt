@@ -22,14 +22,23 @@ FRONTEND
 - Upload de imagem do meu perfil
 
 BACKEND
-- Login
 - Esqueci a Senha
+- Envio de Senha por email
 - CRUD de Usuário
 - CRUD de Publicação
+- Adicionar Mappers de dados da base para classe (Dados da base para Classe)
+- Adicionar Mappers e Classes DTOs (Classe para Objetos que serão enviados para o front)
+- Adicionar um Helper para converter os campos do tipo datetime para Epoch time
+- Adicionar um padronizador de mensagem de resposta ok para o front.
+- Adicionar um padronizador de mensagem de resposta de erro para o front.
 
 ----------------------------------
 
 DONE
 
+FRONTEND
 
 
+
+BACKEND
+- Login

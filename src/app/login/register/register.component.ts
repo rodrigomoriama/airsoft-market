@@ -1,3 +1,8 @@
+import { MatSnackBar } from '@angular/material';
+import { MessagesHelper } from './../../helpers/messages-helper';
+import { UserLogin } from './../../../domain/user-login';
+import { URLSearchParams } from '@angular/http';
+import { UserDataService } from './../../../providers/user-data.service';
 import { FormatFieldHelper } from './../../helpers/format-field-helper';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -16,7 +21,9 @@ export class RegisterComponent implements OnInit {
 
   masks: any;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder,
+    private userDataService: UserDataService,
+    public snackBar: MatSnackBar) {
     this.registerForm = this.formBuilder.group({
       'email': [''],
       'password': [''],
@@ -38,6 +45,15 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     this.unmaskField();
+    this.userDataService.registerUser(this.registerForm.value, new URLSearchParams).subscribe(
+      (data: UserLogin) => {
+        MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Usuário criado com sucesso !');
+        this.userDataService.loginSuccess(data);
+      },
+      error => {
+        MessagesHelper.handleSimpleMsgSnack(this.snackBar, error);
+      }
+    );
   }
 
   unmaskField() {

@@ -1,3 +1,4 @@
+import { UserDataService } from './../providers/user-data.service';
 import { ProfileModule } from './profile/profile.module';
 import { TextMaskModule } from 'angular2-text-mask';
 import { LoginModule } from './login/login.module';
@@ -82,6 +83,7 @@ import { ReportPublicationComponent } from './modal/report-publication/report-pu
   ],
   providers: [
     ApiService,
+    UserDataService
   ],
   bootstrap: [AppComponent]
 })

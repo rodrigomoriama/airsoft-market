@@ -1,3 +1,4 @@
+import { LocalStorageHelper } from './../app/helpers/local-storage-helper';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
 import { Headers, Http, RequestOptions, Response, ResponseContentType, URLSearchParams } from '@angular/http';
@@ -18,9 +19,11 @@ export class ApiService {
       'Accept': 'application/json'
     };
 
-    // if (this.jwtService.getToken()) {
-    //   headersConfig['Authorization'] = `${this.jwtService.getToken()}`;
-    // }
+    const token = LocalStorageHelper.getToken();
+
+    if (token) {
+      headersConfig['Authorization'] = `Bearer ${token}`;
+    }
 
     if (data) {
       delete headersConfig['Content-Type'];

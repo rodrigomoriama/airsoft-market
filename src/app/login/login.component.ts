@@ -1,3 +1,6 @@
+import { UserLogin } from './../../domain/user-login';
+import { URLSearchParams } from '@angular/http';
+import { UserDataService } from './../../providers/user-data.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Component, OnInit, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
@@ -19,7 +22,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
-    private changeDetectorRef: ChangeDetectorRef) {
+    private changeDetectorRef: ChangeDetectorRef,
+    private userDataService: UserDataService) {
     this.loginForm = this.formBuilder.group({
       'email': [''],
       'password': ['']
@@ -42,6 +46,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   onSubmit() {
     console.log(this.loginForm.value);
+    this.userDataService.login(this.loginForm.value, new URLSearchParams).subscribe(
+      (data: UserLogin) => {
+        console.log('login data: ', data);
+        this.userDataService.loginSuccess(data);
+      },
+      error => {
+
+      }
+    );
   }
 
   focusLogin() {

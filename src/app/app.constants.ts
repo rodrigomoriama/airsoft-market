@@ -24,6 +24,13 @@ export class AppConstants {
   public static URL_PUBLICATION_SYSTEM_TYPE = 'systemType';
   public static URL_PUBLICATION_LOCATION_CITY = 'locationCity';
 
+  // USER DATA
+  public static URL_LOGIN = 'login';
+  public static URL_FORGOT_PASSWORD = 'forgotPassword';
+  public static URL_USER = 'user';
+  public static URL_USER_REGISTER = 'userRegister';
+
+
   // ********* PARAMS *******************
   public static PARAMS_MOSAIC_OPERATION_TYPE = 'operationType_like';
   public static PARAMS_MOSAIC_PRODUCT_TYPE = 'productType';
@@ -42,4 +49,6 @@ export class AppConstants {
   public static LOCAL_STORAGE_USERNAME = 'username';
   public static LOCAL_STORAGE_PHONE = 'phone';
   public static LOCAL_STORAGE_CELLPHONE = 'cellphone';
+  public static LOCAL_STORAGE_TOKEN = 'token';
+  public static LOCAL_STORAGE_HAS_LOGGED_IN = 'hasLoggedIn';
 }
