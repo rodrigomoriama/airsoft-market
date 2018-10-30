@@ -1,4 +1,5 @@
-import { PublicationService } from './../../../providers/publication.service';
+import { MosaicService } from './../../../providers/mosaic.service';
+import { mosaicService } from './../../../providers/publication.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FormatFieldHelper } from './../../helpers/format-field-helper';
 import { MosaicFilter } from './../../../domain/mosaic-filter';
@@ -33,7 +34,7 @@ export class MosaicFilterComponent implements OnInit, AfterViewInit {
   filterEmitter = new EventEmitter<MosaicFilter>();
   subscriptionLocation: Subscription;
 
-  constructor(private publicationService: PublicationService,
+  constructor(private mosaicService: MosaicService,
     private formBuilder: FormBuilder) {
 
     this.emptyItem = { id: null, name: '' };
@@ -59,11 +60,11 @@ export class MosaicFilterComponent implements OnInit, AfterViewInit {
 
   ngOnInit() {
     forkJoin(
-      this.publicationService.getOperationType(new URLSearchParams),
-      this.publicationService.getProductType(new URLSearchParams),
-      this.publicationService.getConditionType(new URLSearchParams),
-      this.publicationService.getCaliberType(new URLSearchParams),
-      this.publicationService.getSystemType(new URLSearchParams),
+      this.mosaicService.getOperationType(new URLSearchParams),
+      this.mosaicService.getProductType(new URLSearchParams),
+      this.mosaicService.getConditionType(new URLSearchParams),
+      this.mosaicService.getCaliberType(new URLSearchParams),
+      this.mosaicService.getSystemType(new URLSearchParams),
     ).subscribe(
       (data: [Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[]]) => {
 
@@ -150,9 +151,9 @@ export class MosaicFilterComponent implements OnInit, AfterViewInit {
 
   onFilterLocation(event: string) {
     const params = new URLSearchParams();
-    params.set('name_like', event);
+    params.set('city', event);
 
-    this.publicationService.getLocationCity(params).subscribe(
+    this.mosaicService.getLocationCity(params).subscribe(
       (location: Dropdown[]) => {
         this.location = location;
       },

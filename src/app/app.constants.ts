@@ -9,6 +9,12 @@ export class AppConstants {
   public static URL_WHATSAPP_MESSAGE = 'https://wa.me/';
 
   public static URL_MOSAIC_ALL = 'mosaic';
+  public static URL_MOSAIC_COMBO_FILTER_OPERATION_TYPE = 'mosaic/operationType';
+  public static URL_MOSAIC_COMBO_FILTER_PRODUCT_TYPE = 'mosaic/productType';
+  public static URL_MOSAIC_COMBO_FILTER_CONDITION_TYPE = 'mosaic/conditionType';
+  public static URL_MOSAIC_COMBO_FILTER_CALIBER_TYPE = 'mosaic/caliberType';
+  public static URL_MOSAIC_COMBO_FILTER_SYSTEM_TYPE = 'mosaic/systemType';
+  public static URL_MOSAIC_COMBO_FILTER_CITY = 'mosaic/city';
 
   public static URL_PUBLICATION_BY_ID = 'publicationDetail';
 
