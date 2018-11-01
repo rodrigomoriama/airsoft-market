@@ -1,3 +1,5 @@
+import { ChangePasswordComponent } from './profile/change-password/change-password.component';
+import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
@@ -10,7 +12,10 @@ import { Routes, RouterModule } from '@angular/router';
 
 const appRoutes: Routes = [
 
-    { path: 'profile', component: ProfileComponent },
+    { path: 'profile', component: ProfileComponent , children: [
+        { path: 'edit', component: EditProfileComponent },
+        { path: 'change-password', component: ChangePasswordComponent },
+    ]},
 
     { path: 'new-publication', component: PublicationComponent },
     { path: 'new-publication/:id', component: PublicationComponent },

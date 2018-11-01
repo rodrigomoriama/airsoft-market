@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +15,8 @@ import {
   MatSlideToggleModule,
   MatCheckboxModule
 } from '@angular/material';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   imports: [
@@ -29,10 +32,13 @@ import {
     MatSelectModule,
     MatSlideToggleModule,
     MatCheckboxModule,
-    TextMaskModule
+    TextMaskModule,
+    RouterModule
   ],
   declarations: [
-    ProfileComponent
+    ProfileComponent,
+    ChangePasswordComponent,
+    EditProfileComponent
   ]
 })
 export class ProfileModule { }

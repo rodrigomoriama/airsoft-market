@@ -1,5 +1,4 @@
 import { MosaicService } from './../../../providers/mosaic.service';
-import { mosaicService } from './../../../providers/publication.service';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { FormatFieldHelper } from './../../helpers/format-field-helper';
 import { MosaicFilter } from './../../../domain/mosaic-filter';

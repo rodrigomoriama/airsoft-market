@@ -5,7 +5,7 @@ import { User } from './../domain/user';
 import { LocalStorageHelper } from './../app/helpers/local-storage-helper';
 import { URLSearchParams } from '@angular/http';
 import { catchError, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
 import { AppConstants } from './../app/app.constants';
 import { ApiService } from './api.service';
 import { Injectable, EventEmitter } from '@angular/core';
@@ -22,7 +22,7 @@ export class UserDataService {
    }
 
   private handleError(error: Response | any) {
-    return Observable.throw(error || 'backend server error');
+    return throwError(error || 'backend server error');
   }
 
 
@@ -76,19 +76,25 @@ export class UserDataService {
   // USER DETAIL
   getUserByEmail(email: string, params: URLSearchParams) {
     params.set('email', email);
-    return this.apiService.get(`${AppConstants.URL_USER}`, params).pipe(
+    return this.apiService.get(`${AppConstants.URL_USER_DETAIL}`, params).pipe(
       map(res => res),
       catchError(this.handleError));
   }
 
   updateUser(id: number, form: any, params: URLSearchParams) {
-    return this.apiService.put(`${AppConstants.URL_USER}/${id}`, form, params).pipe(
+    return this.apiService.put(`${AppConstants.URL_USER_EDIT}/${id}`, form, params).pipe(
       map(res => res),
       catchError(this.handleError));
   }
 
   registerUser(form: any, params: URLSearchParams) {
     return this.apiService.post(AppConstants.URL_USER_REGISTER, form, params).pipe(
+      map(res => res),
+      catchError(this.handleError));
+  }
+
+  changePassword(userCode, form: any, params: URLSearchParams) {
+    return this.apiService.post(`${AppConstants.URL_USER_CHANGE_PASSWORD}/${userCode}`, form, params).pipe(
       map(res => res),
       catchError(this.handleError));
   }

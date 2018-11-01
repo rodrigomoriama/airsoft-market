@@ -33,8 +33,10 @@ export class AppConstants {
   // USER DATA
   public static URL_LOGIN = 'login';
   public static URL_FORGOT_PASSWORD = 'forgotPassword';
-  public static URL_USER = 'user';
-  public static URL_USER_REGISTER = 'userRegister';
+  public static URL_USER_DETAIL = 'user/detail';
+  public static URL_USER_REGISTER = 'user/register';
+  public static URL_USER_EDIT = 'user/edit';
+  public static URL_USER_CHANGE_PASSWORD = 'user/changePassword';
 
 
   // ********* PARAMS *******************

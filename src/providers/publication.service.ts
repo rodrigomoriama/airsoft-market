@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { throwError } from 'rxjs';
 import { AppConstants } from './../app/app.constants';
 import { map } from 'rxjs/operators';
 import { URLSearchParams } from '@angular/http';
@@ -12,7 +12,7 @@ export class PublicationService {
   constructor(private apiService: ApiService) { }
 
   private handleError(error: Response | any) {
-    return Observable.throw(error || 'backend server error');
+    return throwError(error || 'backend server error');
   }
 
   getPublicationById(params: URLSearchParams, id) {
