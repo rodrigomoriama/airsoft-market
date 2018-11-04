@@ -150,7 +150,7 @@ export class MosaicFilterComponent implements OnInit, AfterViewInit {
 
   onFilterLocation(event: string) {
     const params = new URLSearchParams();
-    params.set('city', event);
+    params.set('name', event);
 
     this.mosaicService.getLocationCity(params).subscribe(
       (location: Dropdown[]) => {

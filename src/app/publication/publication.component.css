@@ -1,6 +1,7 @@
-.pb-operation-type-field mat-checkbox {
+.pb-operation-type-field mat-radio-button {
     margin-right: 15px;
 }
+
 .publication-images-upload {
     margin-bottom: 5px;
 }

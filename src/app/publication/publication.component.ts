@@ -23,7 +23,6 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   publicationForm: FormGroup;
 
-  codeOperationType: number[];
   hasUp: boolean;
   isAlter: boolean;
 
@@ -72,15 +71,13 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       'codeCaliberType': [null],
       'codeSystemType': [null],
       'codeActivationType': [null],
+      'codeOperationType': ['2'],
 
       'price': [0],
       'amount': [1],
 
       'hasUpgrade': [false],
       'acceptExchange': [false],
-      'opBuy': [false],
-      'opSell': [true],
-      'opExchange': [false],
       'sendRegisteredInfo': [false],
 
       'title': [''],
@@ -93,6 +90,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       'cellphone': [''],
       'email': [''],
       'username': [''],
+
       'meetingPoint': [''],
       'dtValidate': [''],
       'desc': [''],
@@ -113,7 +111,6 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit() {
     this.fileMediaUpload = [];
     this.fileMediaUploadAlter = [];
-    this.codeOperationType = [];
 
     this.loadFieldsData();
   }
@@ -139,21 +136,36 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
     this.unmaskField();
 
     const formData = new FormData;
-    formData.set('codeOperationType', <any>this.codeOperationType);
+    // formData.set('codeOperationType', <any>this.codeOperationType);
+
+    this.publicationService.createPublication(this.publicationForm.value, new URLSearchParams).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    );
 
     console.log(this.publicationForm.value);
   }
 
   loadFieldsData() {
+    const cityParams = new URLSearchParams();
+    cityParams.set('name', '');
+
+    const manufacturerParams = new URLSearchParams();
+    manufacturerParams.set('name', '');
+
     forkJoin(
       this.publicationService.getProductType(new URLSearchParams),
       this.publicationService.getConditionType(new URLSearchParams),
       this.publicationService.getCaliberType(new URLSearchParams),
       this.publicationService.getSystemType(new URLSearchParams),
-      this.publicationService.getManufacturer(new URLSearchParams),
       this.publicationService.getMaterialType(new URLSearchParams),
       this.publicationService.getActivationType(new URLSearchParams),
-      this.publicationService.getLocationCity(new URLSearchParams),
+      this.publicationService.getLocationCity(cityParams),
+      this.publicationService.getManufacturer(manufacturerParams),
     ).subscribe(
       (data: [Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[], Dropdown[]]) => {
 
@@ -161,10 +173,10 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
         this.conditionType = data[1];
         this.caliberType = data[2];
         this.systemType = data[3];
-        this.manufacturer = data[4];
-        this.materialType = data[5];
-        this.activationType = data[6];
-        this.location = data[7];
+        this.materialType = data[4];
+        this.activationType = data[5];
+        this.location = data[6];
+        this.manufacturer = data[7];
 
         this.productType.unshift(this.emptyItem);
         this.conditionType.unshift(this.emptyItem);
@@ -172,6 +184,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
         this.systemType.unshift(this.emptyItem);
         this.materialType.unshift(this.emptyItem);
         this.activationType.unshift(this.emptyItem);
+        this.manufacturer.unshift(this.emptyItem);
       },
       error => console.log(error)
     );
@@ -198,58 +211,6 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       ).subscribe(value => {
         this.onFilterManufacturer(value);
       });
-  }
-
-  selectOperationType(value: any, operationType: number): void {
-    // console.log(value.checked);
-    // console.log(operationType);
-
-    if (value.checked) {
-      if (operationType === AppConstants.OPERATION_TYPE_BUY) {
-        const val = this.codeOperationType.findIndex(v => v === AppConstants.OPERATION_TYPE_SELL);
-        if (val >= 0) {
-          this.codeOperationType[val] = AppConstants.OPERATION_TYPE_BUY;
-          this.publicationForm.get('opBuy').setValue(true);
-          this.publicationForm.get('opSell').setValue(false);
-        } else {
-          this.codeOperationType.push(AppConstants.OPERATION_TYPE_BUY);
-          this.publicationForm.get('opBuy').setValue(true);
-          this.publicationForm.get('opSell').setValue(false);
-        }
-      }
-
-      if (operationType === AppConstants.OPERATION_TYPE_SELL) {
-        const val = this.codeOperationType.findIndex(v => v === AppConstants.OPERATION_TYPE_BUY);
-        if (val >= 0) {
-          this.codeOperationType[val] = AppConstants.OPERATION_TYPE_SELL;
-          this.publicationForm.get('opBuy').setValue(false);
-          this.publicationForm.get('opSell').setValue(true);
-        } else {
-          this.codeOperationType.push(AppConstants.OPERATION_TYPE_SELL);
-          this.publicationForm.get('opBuy').setValue(false);
-          this.publicationForm.get('opSell').setValue(true);
-        }
-      }
-
-      if (operationType === AppConstants.OPERATION_TYPE_EXCHANGE) {
-        const val = this.codeOperationType.findIndex(v => v === AppConstants.OPERATION_TYPE_EXCHANGE);
-        if (val < 0) {
-          this.codeOperationType.push(AppConstants.OPERATION_TYPE_EXCHANGE);
-        }
-      }
-    } else {
-      if (this.codeOperationType.length === 2) {
-        const op = this.codeOperationType.filter(v => v !== operationType);
-        this.codeOperationType = op;
-      } else {
-        this.codeOperationType = [];
-        this.publicationForm.get('opBuy').setValue(false);
-        this.publicationForm.get('opSell').setValue(false);
-        this.publicationForm.get('opExchange').setValue(false);
-      }
-    }
-
-    console.log(this.codeOperationType);
   }
 
   canClearField(fieldName: string): boolean {
@@ -306,7 +267,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onFilterLocation(event: string) {
     const params = new URLSearchParams();
-    params.set('name_like', event);
+    params.set('name', event);
 
     this.publicationService.getLocationCity(params).subscribe(
       (location: Dropdown[]) => {
@@ -358,7 +319,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onFilterModel(event: string) {
     const params = new URLSearchParams();
-    params.set('name_like', event);
+    params.set('name', event);
 
     this.loadModel(params);
   }
@@ -366,6 +327,8 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
   loadModel(params: URLSearchParams) {
     // cannot load data model when user has selected a product type
     if (this.publicationForm.get('codeProductType').value) {
+      params.set('codeProductType', this.publicationForm.get('codeProductType').value);
+
       this.publicationService.getProductModel(params).subscribe(
         (model: Dropdown[]) => {
           this.model = model;
@@ -414,7 +377,7 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onFilterManufacturer(event: string) {
     const params = new URLSearchParams();
-    params.set('name_like', event);
+    params.set('name', event);
 
     this.publicationService.getManufacturer(params).subscribe(
       (manufacturer: Dropdown[]) => {
@@ -547,7 +510,11 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
     }
 
     if (this.publicationForm.get('cellphone').value) {
-      this.publicationForm.get('cellphone').setValue(FormatFieldHelper.unmaskField(this.publicationForm .get('cellphone').value));
+      this.publicationForm.get('cellphone').setValue(FormatFieldHelper.unmaskField(this.publicationForm.get('cellphone').value));
     }
+  }
+
+  showCanExchangeField(): boolean {
+    return Number(this.publicationForm.get('codeOperationType').value) !== AppConstants.OPERATION_TYPE_EXCHANGE;
   }
 }

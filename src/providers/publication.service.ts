@@ -15,6 +15,13 @@ export class PublicationService {
     return throwError(error || 'backend server error');
   }
 
+  createPublication(form, params: URLSearchParams) {
+    return this.apiService.post(AppConstants.URL_PUBLICATION_CREATE, form, params).pipe(
+      map(res => res),
+      catchError(this.handleError)
+    );
+  }
+
   getPublicationById(params: URLSearchParams, id) {
     return this.apiService.get(`${AppConstants.URL_PUBLICATION_BY_ID}/${id}`, params).pipe(
       map(res => res),
@@ -23,14 +30,14 @@ export class PublicationService {
   }
 
   getOperationType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_OPERATION_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_OPERATION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getProductType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_PRODUCT_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_PRODUCT_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -38,7 +45,7 @@ export class PublicationService {
 
 
   getProductModel(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_PRODUCT_MODEL, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_PRODUCT_MODEL, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -46,7 +53,7 @@ export class PublicationService {
 
 
   getManufacturer(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_MANUFACTURER, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_MANUFACTURER, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
@@ -54,49 +61,49 @@ export class PublicationService {
 
 
   getConditionType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_CONDITION_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_CONDITION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getMaterialType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_MATERIAL_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_MATERIAL_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getCaliberType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_CALIBER_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_CALIBER_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getMagazineType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_MAGAZINE_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_MAGAZINE_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getActivationType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_ACTIVATION_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_ACTIVATION_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getSystemType(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_SYSTEM_TYPE, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_SYSTEM_TYPE, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );
   }
 
   getLocationCity(params: URLSearchParams) {
-    return this.apiService.get(AppConstants.URL_PUBLICATION_LOCATION_CITY, params).pipe(
+    return this.apiService.get(AppConstants.URL_PUBLICATION_COMBO_FILTER_CITY, params).pipe(
       map(res => res),
       catchError(this.handleError)
     );

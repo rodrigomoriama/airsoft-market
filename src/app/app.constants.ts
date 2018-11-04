@@ -9,26 +9,21 @@ export class AppConstants {
   public static URL_WHATSAPP_MESSAGE = 'https://wa.me/';
 
   public static URL_MOSAIC_ALL = 'mosaic';
-  public static URL_MOSAIC_COMBO_FILTER_OPERATION_TYPE = 'mosaic/operationType';
-  public static URL_MOSAIC_COMBO_FILTER_PRODUCT_TYPE = 'mosaic/productType';
-  public static URL_MOSAIC_COMBO_FILTER_CONDITION_TYPE = 'mosaic/conditionType';
-  public static URL_MOSAIC_COMBO_FILTER_CALIBER_TYPE = 'mosaic/caliberType';
-  public static URL_MOSAIC_COMBO_FILTER_SYSTEM_TYPE = 'mosaic/systemType';
-  public static URL_MOSAIC_COMBO_FILTER_CITY = 'mosaic/city';
 
   public static URL_PUBLICATION_BY_ID = 'publicationDetail';
+  public static URL_PUBLICATION_CREATE = 'publication/create';
 
-  public static URL_PUBLICATION_PRODUCT_TYPE = 'productType';
-  public static URL_PUBLICATION_OPERATION_TYPE = 'operationType';
-  public static URL_PUBLICATION_PRODUCT_MODEL = 'model';
-  public static URL_PUBLICATION_MANUFACTURER = 'manufacturer';
-  public static URL_PUBLICATION_CONDITION_TYPE = 'conditionType';
-  public static URL_PUBLICATION_MATERIAL_TYPE = 'materialType';
-  public static URL_PUBLICATION_CALIBER_TYPE = 'caliberType';
-  public static URL_PUBLICATION_MAGAZINE_TYPE = 'magazineType';
-  public static URL_PUBLICATION_ACTIVATION_TYPE = 'activationType';
-  public static URL_PUBLICATION_SYSTEM_TYPE = 'systemType';
-  public static URL_PUBLICATION_LOCATION_CITY = 'locationCity';
+  public static URL_PUBLICATION_COMBO_FILTER_OPERATION_TYPE = 'publication/combo/operationType';
+  public static URL_PUBLICATION_COMBO_FILTER_PRODUCT_TYPE = 'publication/combo/productType';
+  public static URL_PUBLICATION_COMBO_FILTER_CONDITION_TYPE = 'publication/combo/conditionType';
+  public static URL_PUBLICATION_COMBO_FILTER_CALIBER_TYPE = 'publication/combo/caliberType';
+  public static URL_PUBLICATION_COMBO_FILTER_SYSTEM_TYPE = 'publication/combo/systemType';
+  public static URL_PUBLICATION_COMBO_FILTER_CITY = 'publication/combo/city';
+  public static URL_PUBLICATION_COMBO_FILTER_PRODUCT_MODEL = 'publication/combo/model';
+  public static URL_PUBLICATION_COMBO_FILTER_MANUFACTURER = 'publication/combo/manufacturer';
+  public static URL_PUBLICATION_COMBO_FILTER_MATERIAL_TYPE = 'publication/combo/materialType';
+  public static URL_PUBLICATION_COMBO_FILTER_MAGAZINE_TYPE = 'publication/combo/magazineType';
+  public static URL_PUBLICATION_COMBO_FILTER_ACTIVATION_TYPE = 'publication/combo/activationType';
 
   // USER DATA
   public static URL_LOGIN = 'login';
