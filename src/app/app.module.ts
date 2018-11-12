@@ -37,6 +37,7 @@ import { NgxGalleryModule } from 'ngx-gallery';
 import { PublicationComponent } from './publication/publication.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ReportPublicationComponent } from './modal/report-publication/report-publication.component';
+import { PageSuccessPublicationComponent } from './pages/page-success-publication/page-success-publication.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ReportPublicationComponent } from './modal/report-publication/report-pu
     PublicationDetailComponent,
     PublicationComponent,
     PageNotFoundComponent,
-    ReportPublicationComponent
+    ReportPublicationComponent,
+    PageSuccessPublicationComponent
   ],
   entryComponents: [
     ReportPublicationComponent

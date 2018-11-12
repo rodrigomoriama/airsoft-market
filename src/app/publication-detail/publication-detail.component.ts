@@ -56,7 +56,11 @@ export class PublicationDetailComponent implements OnInit {
         this.hasData = true;
 
         if (this.detail.dtValidate) {
-          this.detail.dtValidate = ConvertDateTimeHelper.convertEpochToDate(this.detail.dtValidate);
+          this.detail.dtValidateFormatted = ConvertDateTimeHelper.convertEpochToDate(this.detail.dtValidate);
+        }
+
+        if (this.detail.dtUpdated) {
+          this.detail.dtUpdatedFormatted = ConvertDateTimeHelper.convertEpochToDate(this.detail.dtUpdated);
         }
 
         if (this.detail.phone) {

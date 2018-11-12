@@ -8,4 +8,6 @@ export interface Mosaic {
    amount: number;
    location: string;
    thumb_path: string;
+   dtValidate: number;
+   dtUpdated: number;
 }

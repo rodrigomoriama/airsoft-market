@@ -45,6 +45,8 @@ export class UserDataService {
     LocalStorageHelper.saveData(AppConstants.LOCAL_STORAGE_HAS_LOGGED_IN, 'true');
     LocalStorageHelper.saveData(AppConstants.LOCAL_STORAGE_EMAIL, userData.email);
     LocalStorageHelper.saveData(AppConstants.LOCAL_STORAGE_USERNAME, userData.username);
+    LocalStorageHelper.saveData(AppConstants.LOCAL_STORAGE_PHONE, userData.phone);
+    LocalStorageHelper.saveData(AppConstants.LOCAL_STORAGE_CELLPHONE, userData.cellphone);
 
     this.isLogged = true;
 
@@ -63,6 +65,12 @@ export class UserDataService {
     this.isLogged = false;
     this.LoggedInEmitter.emit({isLogged: false, username: ''});
     this.router.navigate(['']);
+  }
+
+updateUserDataLocalStorage(username: string, phone: string, cellphone: string) {
+    LocalStorageHelper.saveData(AppConstants.LOCAL_STORAGE_USERNAME, username);
+    LocalStorageHelper.saveData(AppConstants.LOCAL_STORAGE_PHONE, phone);
+    LocalStorageHelper.saveData(AppConstants.LOCAL_STORAGE_CELLPHONE, cellphone);
   }
 
   hasLoggedIn(): boolean {

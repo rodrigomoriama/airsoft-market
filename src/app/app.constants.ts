@@ -2,15 +2,17 @@ export class AppConstants {
 
   public static INTERVAL_CHECK_MOSAIC = 10000;
 
+  public static TIME_REDIRECT_TO_HOME = 15;
+
   public static OPERATION_TYPE_BUY = 1;
   public static OPERATION_TYPE_SELL = 2;
   public static OPERATION_TYPE_EXCHANGE = 3;
 
   public static URL_WHATSAPP_MESSAGE = 'https://wa.me/';
 
-  public static URL_MOSAIC_ALL = 'mosaic';
+  public static URL_MOSAIC_ALL = 'mosaic/all';
 
-  public static URL_PUBLICATION_BY_ID = 'publicationDetail';
+  public static URL_PUBLICATION_BY_ID = 'publication/detail';
   public static URL_PUBLICATION_CREATE = 'publication/create';
 
   public static URL_PUBLICATION_COMBO_FILTER_OPERATION_TYPE = 'publication/combo/operationType';

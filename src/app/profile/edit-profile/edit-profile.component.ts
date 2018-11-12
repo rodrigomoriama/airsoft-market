@@ -50,6 +50,8 @@ export class EditProfileComponent implements OnInit {
       data => {
         this.disableFields();
         MessagesHelper.handleSimpleMsgSnack(this.snackBar, 'Usuário Atualizado com sucesso');
+        this.userDataService.updateUserDataLocalStorage(this.profileForm.get('email').value,
+          this.profileForm.get('phone').value, this.profileForm.get('cellphone').value);
       },
       error => {
         MessagesHelper.handleSimpleErrorSnack(this.snackBar, error);

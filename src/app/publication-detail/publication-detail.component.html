@@ -9,16 +9,16 @@
     <div class="col-sm-3"></div>
     <div class="col-sm-4 user-info" *ngIf="hasData">
         <div>
-            <div class="operation-type-field">{{detail.operationType}}</div>
+            <div class="operation-type-field">{{detail.OperationTypeName}}</div>
             <div class="price-field">{{detail.price | currency : 'R$'}}</div>
             <div class="amount-field">Quantidade: {{detail.amount}}</div>
         </div>
 
         <br>
 
-        <div><span>Condição:</span> {{detail.conditionType}}</div>
-        <div><span>Local:</span> {{detail.location}}</div>
-        <div><span>Validade:</span> {{detail.dtValidate}}</div>
+        <div><span>Condição:</span> {{detail.conditionTypeName}}</div>
+        <div><span>Local:</span> {{detail.locationName}}</div>
+        <div><span>Validade:</span> {{detail.dtValidateFormatted}}</div>
 
         <hr>
 
@@ -51,15 +51,15 @@
         <h3>Descrição</h3>
         <div class="description-field">{{detail.desc}}</div>
 
-        <div><span>Tipo:</span> {{detail.productType}}</div>
-        <div><span>Modelo:</span> {{detail.model}}</div>
-        <div><span>Marca:</span> {{detail.manufacturer}}</div>
-        <div><span>Material:</span> {{detail.materialType}}</div>
-        <div><span>Tipo de Sistema:</span> {{detail.systemType}}</div>
-        <div><span>Ação:</span> {{detail.activationType}}</div>
+        <div><span>Tipo:</span> {{detail.productTypeName}}</div>
+        <div><span>Modelo:</span> {{detail.modelName}}</div>
+        <div><span>Marca:</span> {{detail.manufacturerName}}</div>
+        <div><span>Material:</span> {{detail.materialTypeName}}</div>
+        <div><span>Tipo de Sistema:</span> {{detail.systemTypeName}}</div>
+        <div><span>Ação:</span> {{detail.activationTypeName}}</div>
         <div><span>Alcance:</span> ~ {{detail.range}}</div>
         <div><span>Velocidade:</span> ~ {{detail.fps}}FPS</div>
-        <div><span>Calibre:</span> {{detail.caliberType}}</div>
+        <div><span>Calibre:</span> {{detail.caliberTypeName}}</div>
 
         <br>
         <div><span>Upgrade:</span> {{translateBoolean(detail.hasUpgrade)}}</div>

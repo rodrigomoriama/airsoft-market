@@ -1,3 +1,4 @@
+import { PageSuccessPublicationComponent } from './pages/page-success-publication/page-success-publication.component';
 import { ChangePasswordComponent } from './profile/change-password/change-password.component';
 import { EditProfileComponent } from './profile/edit-profile/edit-profile.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -21,6 +22,8 @@ const appRoutes: Routes = [
     { path: 'new-publication/:id', component: PublicationComponent },
 
     { path: 'publication-detail/:id', component: PublicationDetailComponent },
+
+    { path: 'success-publication/:id', component: PageSuccessPublicationComponent },
 
     { path: 'login', component: LoginComponent },
 

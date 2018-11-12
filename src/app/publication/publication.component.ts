@@ -126,24 +126,41 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
-    this.subscriptionLocation.unsubscribe();
-    this.subscriptionManufacturer.unsubscribe();
-    this.subscriptionModel.unsubscribe();
+    this.unsubscribeCombos();
   }
 
   onSubmit() {
     this.unmaskField();
 
-    const formData = new FormData;
-    // formData.set('codeOperationType', <any>this.codeOperationType);
+    // this.unsubscribeCombos();
+
+    // const formData = FormatFieldHelper.copyToFormData(FormatFieldHelper.enableAllFieldsFormGroup(this.publicationForm));
+
+    // this.subscribeCombos();
+
+    // if (this.publicationForm.get('locationName').value) {
+    //   formData.delete('locationName');
+    // }
+
+    // if (this.publicationForm.get('modelName').value) {
+    //   formData.delete('modelName');
+    // }
+
+    // if (this.publicationForm.get('manufacturerName').value) {
+    //   formData.delete('manufacturerName');
+    // }
+
+    this.enableContactFields();
 
     this.publicationService.createPublication(this.publicationForm.value, new URLSearchParams).subscribe(
       data => {
         console.log(data);
+        this.router.navigate(['success-publication', data]);
       },
       error => {
         console.log(error);
+        MessagesHelper.handleSimpleErrorSnack(this.snackBar, error);
+        this.disableContactField();
       }
     );
 
@@ -211,6 +228,13 @@ export class PublicationComponent implements OnInit, AfterViewInit, OnDestroy {
       ).subscribe(value => {
         this.onFilterManufacturer(value);
       });
+  }
+
+  unsubscribeCombos() {
+    this.subscription.unsubscribe();
+    this.subscriptionLocation.unsubscribe();
+    this.subscriptionManufacturer.unsubscribe();
+    this.subscriptionModel.unsubscribe();
   }
 
   canClearField(fieldName: string): boolean {

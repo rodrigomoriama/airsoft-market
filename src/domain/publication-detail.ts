@@ -1,32 +1,59 @@
 export interface PublicationDetail {
   id: number;
-  codeOperationType: number[];
-  operationType: string;
-  title: string;
-  productType: string;
-  model: string;
-  manufacturer: string;
-  materialType: string;
+
+  codeOperationType: number;
+  OperationTypeName: string;
+
+  codeModel: number;
+  modelName: string;
+
+  codeProductType: number;
+  productTypeName: string;
+
+  codeManufacturer: number;
+  manufacturerName: string;
+
+  codeMaterialType: number;
+  materialTypeName: string;
+
+  codeConditionType: number;
+  conditionTypeName: string;
+
+  codeLocation: number;
+  locationName: string;
+
+  codeCaliberType: number;
+  caliberTypeName: string;
+
+  codeSystemType: number;
+  systemTypeName: string;
+
+  codeActivationType: number;
+  activationTypeName: string;
+
   price: number;
   amount: number;
-  conditionType: string;
+
   hasUpgrade: boolean;
-  upgrades: string;
-  location: string;
-  itemsIncluded: string;
   acceptExchange: boolean;
-  caliberType: string;
-  systemType: string;
-  activationType: string;
+
+  title: string;
+  upgrades: string;
+  itemsIncluded: string;
   range: string;
   fps: string;
+
+  meetingPoint: string;
+  desc: string;
+  website_link: string;
+
+  dtValidate: number;
+  dtValidateFormatted: string;
+  dtUpdated: number;
+  dtUpdatedFormatted: string;
+
   phone: string;
   cellphone: string;
   email: string;
   username: string;
-  meetingPoint: string;
-  images_path: string[];
-  dtValidate: string;
-  desc: string;
-  website_link: string;
 }
